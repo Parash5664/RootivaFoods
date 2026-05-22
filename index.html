@@ -351,29 +351,25 @@ footer{background:#0f2318;color:rgba(255,255,255,.65);padding:56px 36px 24px}
     <p>From dried tropical fruits to superfood powders and crispy veggie chips — pure, dehydrated goodness.</p>
   </div>
   <div class="cat-grid">
-    <a class="cat-card" href="products.html?cat=Fruit+Chips">
-      <img class="cat-bg" src="https://images.unsplash.com/photo-1614766241366-3be1edcaf821?auto=format&fit=crop&w=400&h=260&q=80" alt="Fruit Chips">
-      <div class="cat-overlay"><span class="cat-label">13 Products</span><h3>Fruit Chips</h3></div>
+    <a class="cat-card" href="products.html?cat=Dried+Fruits">
+      <img class="cat-bg" src="images/Dried-Fruits/Dried%20Apple.png" alt="Dried Fruits">
+      <div class="cat-overlay"><span class="cat-label">10 Products</span><h3>Dried Fruits</h3></div>
     </a>
-    <a class="cat-card" href="products.html?cat=Veggie+Chips">
-      <img class="cat-bg" src="https://images.unsplash.com/photo-1579384264577-79580c9d3a36?auto=format&fit=crop&w=400&h=260&q=80" alt="Veggie Chips">
-      <div class="cat-overlay"><span class="cat-label">12 Products</span><h3>Veggie Chips</h3></div>
-    </a>
-    <a class="cat-card" href="products.html?cat=Superfood+Powders">
-      <img class="cat-bg" src="https://images.unsplash.com/photo-1647531381737-00c3ad41c11d?auto=format&fit=crop&w=400&h=260&q=80" alt="Superfood Powders">
-      <div class="cat-overlay"><span class="cat-label">9 Products</span><h3>Superfood Powders</h3></div>
-    </a>
-    <a class="cat-card" href="products.html?cat=Dried+Berries">
-      <img class="cat-bg" src="https://images.unsplash.com/photo-1605210055791-6c1ebc17f718?auto=format&fit=crop&w=400&h=260&q=80" alt="Dried Berries">
-      <div class="cat-overlay"><span class="cat-label">5 Products</span><h3>Dried Berries</h3></div>
+    <a class="cat-card" href="products.html?cat=Dried+Vegetables">
+      <img class="cat-bg" src="images/Dried-Vegitables/Dried%20Carrot%20Chips.png" alt="Dried Vegetables">
+      <div class="cat-overlay"><span class="cat-label">11 Products</span><h3>Dried Vegetables</h3></div>
     </a>
     <a class="cat-card" href="products.html?cat=Dried+Herbs">
-      <img class="cat-bg" src="https://images.unsplash.com/photo-HcpqoHit2zg?auto=format&fit=crop&w=400&h=260&q=80" alt="Dried Herbs">
+      <img class="cat-bg" src="https://images.unsplash.com/photo-1509156396595-449e10c5cd3e?auto=format&fit=crop&w=400&h=260&q=80" alt="Dried Herbs">
       <div class="cat-overlay"><span class="cat-label">3 Products</span><h3>Dried Herbs</h3></div>
     </a>
+    <a class="cat-card" href="products.html?cat=Powders">
+      <img class="cat-bg" src="images/Powders/BeetRoot%20powder.png" alt="Powders">
+      <div class="cat-overlay"><span class="cat-label">11 Products</span><h3>Powders</h3></div>
+    </a>
     <a class="cat-card" href="products.html">
-      <img class="cat-bg" src="https://images.unsplash.com/photo-1598799170815-933217492614?auto=format&fit=crop&w=400&h=260&q=80" alt="All Products">
-      <div class="cat-overlay"><span class="cat-label">41 Products</span><h3>All Products</h3></div>
+      <img class="cat-bg" src="images/Dried-Fruits/Dried%20pineapple.png" alt="All Products">
+      <div class="cat-overlay"><span class="cat-label">35 Products</span><h3>All Products</h3></div>
     </a>
   </div>
 </section>
@@ -539,18 +535,18 @@ footer{background:#0f2318;color:rgba(255,255,255,.65);padding:56px 36px 24px}
 
 <script>
 const PRODUCTS = [
-  {id:1,category:'Fruit Chips',name:'Apple Chips',weight:'100g',image:'images/Dried%20Apple.png',price:6.80,description:'Crisp dehydrated apple rings with all the fibre and flavour, zero preservatives.'},
-  {id:2,category:'Fruit Chips',name:'Pineapple Chips',weight:'100g',image:'images/Dried%20pineapple.png',price:9.80,description:'Golden pineapple rings slow-dried to intensify their natural sweetness.'},
-  {id:3,category:'Fruit Chips',name:'Papaya Chips',weight:'100g',image:'images/Dried%20Papaya.png',price:5.50,description:'Sun-kissed papaya slices, naturally dehydrated for a sweet tropical chew. No added sugar.'},
-  {id:4,category:'Fruit Chips',name:'Banana Chips',weight:'100g',image:'images/Dried%20Banana%20.png',price:5.50,description:'Golden banana chips slow-dried for a naturally sweet, energy-packed snack.'},
-  {id:5,category:'Veggie Chips',name:'Carrot Chips',weight:'100g',image:'images/Dried%20Carrot%20Chips.png',price:3.60,description:'Light and crunchy carrot chips — a guilt-free snack with a satisfying crunch.'},
-  {id:6,category:'Veggie Chips',name:'Kale Chips',weight:'100g',image:'https://images.unsplash.com/photo-1534942240902-fc71ff3dfaee?auto=format&fit=crop&w=400&h=300&q=80',price:6.50,description:'Light and crispy kale chips loaded with vitamins K, A and C. A true superfood snack.'},
-  {id:7,category:'Superfood Powders',name:'Beetroot Powder',weight:'100g',image:'images/BeetRoot%20powder.png',price:5.60,description:'Pure cold-dried beetroot powder. Earthy, vibrant, rich in iron and nitrates.'},
-  {id:8,category:'Superfood Powders',name:'Amla Powder',weight:'100g',image:'images/amla%20powder.png',price:7.50,description:"Premium gooseberry (amla) powder — one of nature's richest sources of Vitamin C."},
-  {id:9,category:'Dried Berries',name:'Dried Strawberries',weight:'100g',image:'images/Dried%20straberry.png',price:10.50,description:'Vibrant freeze-dried strawberry slices packed with natural antioxidants. Perfect snacking.'},
-  {id:10,category:'Dried Berries',name:'Dried Blueberries',weight:'100g',image:'https://images.unsplash.com/photo-1605210055791-6c1ebc17f718?auto=format&fit=crop&w=400&h=300&q=80',price:12.00,description:'Plump dried blueberries loaded with antioxidants. Sweet, chewy and irresistible.'},
-  {id:11,category:'Dried Herbs',name:'Dried Mint',weight:'50g',image:'https://images.unsplash.com/photo-1509156396595-449e10c5cd3e?auto=format&fit=crop&w=400&h=300&q=80',price:4.00,description:'Cool, aromatic dried mint — great for teas, chutneys and garnishing dishes.'},
-  {id:12,category:'Fruit Chips',name:'Dragon Fruit Chips',weight:'100g',image:'https://images.unsplash.com/photo-1676630034207-5e6e627420d9?auto=format&fit=crop&w=400&h=300&q=80',price:11.00,description:'Exotic dragon fruit chips — visually stunning, mildly sweet and full of nutrients.'},
+  {id:1,category:'Dried Fruits',name:'Dried Apple',weight:'100g',image:'images/Dried-Fruits/Dried%20Apple.png',price:6.80,description:'Crisp dehydrated apple rings with all the fibre and flavour, zero preservatives.'},
+  {id:2,category:'Dried Fruits',name:'Dried Pineapple',weight:'100g',image:'images/Dried-Fruits/Dried%20pineapple.png',price:9.80,description:'Golden pineapple rings slow-dried to intensify their natural sweetness.'},
+  {id:3,category:'Dried Fruits',name:'Dried Papaya',weight:'100g',image:'images/Dried-Fruits/Dried%20Papaya.png',price:5.50,description:'Sun-kissed papaya slices, naturally dehydrated for a sweet tropical chew.'},
+  {id:4,category:'Dried Fruits',name:'Dried Strawberry',weight:'100g',image:'images/Dried-Fruits/Dried%20straberry.png',price:10.50,description:'Vibrant freeze-dried strawberry slices packed with natural antioxidants.'},
+  {id:5,category:'Dried Fruits',name:'Dried Banana',weight:'100g',image:'images/Dried-Fruits/Dried%20Banana%20.png',price:5.50,description:'Golden banana chips slow-dried for a naturally sweet, energy-packed snack.'},
+  {id:6,category:'Dried Vegetables',name:'Dried Carrot',weight:'100g',image:'images/Dried-Vegitables/Dried%20Carrot%20Chips.png',price:3.60,description:'Light and crunchy carrot chips — a guilt-free snack with a satisfying crunch.'},
+  {id:7,category:'Powders',name:'Beetroot Powder',weight:'100g',image:'images/Powders/BeetRoot%20powder.png',price:5.60,description:'Pure cold-dried beetroot powder — earthy, vibrant and rich in iron.'},
+  {id:8,category:'Powders',name:'Carrot Powder',weight:'100g',image:'images/Powders/Carrot%20powder.png',price:4.00,description:'100% dehydrated carrot powder — natural beta-carotene boost for smoothies.'},
+  {id:9,category:'Powders',name:'Amla Powder',weight:'100g',image:'images/Powders/amla%20powder.png',price:7.50,description:"Premium amla powder — one of nature's richest sources of Vitamin C."},
+  {id:10,category:'Dried Fruits',name:'Dried Blueberry',weight:'100g',image:'https://images.unsplash.com/photo-1605210055791-6c1ebc17f718?auto=format&fit=crop&w=400&h=300&q=80',price:12.00,description:'Plump dried blueberries loaded with antioxidants. Sweet, chewy and irresistible.'},
+  {id:11,category:'Dried Herbs',name:'Dried Mint',weight:'50g',image:'https://images.unsplash.com/photo-1509156396595-449e10c5cd3e?auto=format&fit=crop&w=400&h=300&q=80',price:4.00,description:'Cool, aromatic dried mint — great for teas, chutneys and garnishing.'},
+  {id:12,category:'Dried Vegetables',name:'Dried Tomato',weight:'100g',image:'images/Dried-Vegitables/tomato%20powder.png',price:5.70,description:'Intensely flavoured dried tomato slices — great for snacking and cooking.'},
 ];
 let cart = [];
 
