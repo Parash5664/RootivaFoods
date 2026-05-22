@@ -85,14 +85,13 @@ header{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);box-shadow:0 
 
 /* CATEGORY CARDS */
 .cat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:18px}
-.cat-card{background:#fff;border-radius:var(--radius);border:1.5px solid var(--border);padding:32px 20px;text-align:center;cursor:pointer;transition:.3s;text-decoration:none;position:relative;overflow:hidden}
-.cat-card::after{content:'';position:absolute;inset:0;background:var(--green);transform:scaleY(0);transform-origin:bottom;transition:.3s;z-index:0}
-.cat-card:hover::after{transform:scaleY(1)}
-.cat-card .cat-icon,.cat-card h3{position:relative;z-index:1;transition:.3s}
-.cat-card:hover .cat-icon,.cat-card:hover h3{color:#fff}
-.cat-card .cat-icon{font-size:40px;margin-bottom:12px;display:block}
-.cat-card h3{font-family:var(--font-display);font-size:16px;color:var(--green);font-weight:600}
-.cat-card:hover{border-color:var(--green);transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.cat-card{border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:.3s;text-decoration:none;position:relative;display:block;min-height:200px}
+.cat-card .cat-bg{width:100%;height:100%;object-fit:cover;transition:.45s;position:absolute;inset:0}
+.cat-card:hover .cat-bg{transform:scale(1.07)}
+.cat-card .cat-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,40,20,.82) 0%,rgba(0,0,0,.18) 65%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:20px}
+.cat-card h3{font-family:var(--font-display);font-size:19px;color:#fff;font-weight:700;position:relative;z-index:1;margin:0}
+.cat-card .cat-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold-light);margin-bottom:5px;position:relative;z-index:1;font-weight:600}
+.cat-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
 
 /* PRODUCT GRID */
 .products-bg{background:var(--light)}
@@ -352,12 +351,30 @@ footer{background:#0f2318;color:rgba(255,255,255,.65);padding:56px 36px 24px}
     <p>From dried tropical fruits to superfood powders and crispy veggie chips — pure, dehydrated goodness.</p>
   </div>
   <div class="cat-grid">
-    <a class="cat-card" href="products.html?cat=Fruit+Chips"><span class="cat-icon">🍎</span><h3>Fruit Chips</h3></a>
-    <a class="cat-card" href="products.html?cat=Veggie+Chips"><span class="cat-icon">🥕</span><h3>Veggie Chips</h3></a>
-    <a class="cat-card" href="products.html?cat=Superfood+Powders"><span class="cat-icon">🌿</span><h3>Superfood Powders</h3></a>
-    <a class="cat-card" href="products.html?cat=Dried+Berries"><span class="cat-icon">🫐</span><h3>Dried Berries</h3></a>
-    <a class="cat-card" href="products.html?cat=Dried+Herbs"><span class="cat-icon">🌱</span><h3>Dried Herbs</h3></a>
-    <a class="cat-card" href="products.html"><span class="cat-icon">🛒</span><h3>All Products</h3></a>
+    <a class="cat-card" href="products.html?cat=Fruit+Chips">
+      <img class="cat-bg" src="https://images.unsplash.com/photo-1614766241366-3be1edcaf821?auto=format&fit=crop&w=400&h=260&q=80" alt="Fruit Chips">
+      <div class="cat-overlay"><span class="cat-label">13 Products</span><h3>Fruit Chips</h3></div>
+    </a>
+    <a class="cat-card" href="products.html?cat=Veggie+Chips">
+      <img class="cat-bg" src="https://images.unsplash.com/photo-1579384264577-79580c9d3a36?auto=format&fit=crop&w=400&h=260&q=80" alt="Veggie Chips">
+      <div class="cat-overlay"><span class="cat-label">12 Products</span><h3>Veggie Chips</h3></div>
+    </a>
+    <a class="cat-card" href="products.html?cat=Superfood+Powders">
+      <img class="cat-bg" src="https://images.unsplash.com/photo-1647531381737-00c3ad41c11d?auto=format&fit=crop&w=400&h=260&q=80" alt="Superfood Powders">
+      <div class="cat-overlay"><span class="cat-label">9 Products</span><h3>Superfood Powders</h3></div>
+    </a>
+    <a class="cat-card" href="products.html?cat=Dried+Berries">
+      <img class="cat-bg" src="https://images.unsplash.com/photo-1605210055791-6c1ebc17f718?auto=format&fit=crop&w=400&h=260&q=80" alt="Dried Berries">
+      <div class="cat-overlay"><span class="cat-label">4 Products</span><h3>Dried Berries</h3></div>
+    </a>
+    <a class="cat-card" href="products.html?cat=Dried+Herbs">
+      <img class="cat-bg" src="https://images.unsplash.com/photo-HcpqoHit2zg?auto=format&fit=crop&w=400&h=260&q=80" alt="Dried Herbs">
+      <div class="cat-overlay"><span class="cat-label">3 Products</span><h3>Dried Herbs</h3></div>
+    </a>
+    <a class="cat-card" href="products.html">
+      <img class="cat-bg" src="https://images.unsplash.com/photo-1598799170815-933217492614?auto=format&fit=crop&w=400&h=260&q=80" alt="All Products">
+      <div class="cat-overlay"><span class="cat-label">41 Products</span><h3>All Products</h3></div>
+    </a>
   </div>
 </section>
 
@@ -521,24 +538,21 @@ footer{background:#0f2318;color:rgba(255,255,255,.65);padding:56px 36px 24px}
 <div class="toast" id="toast"></div>
 
 <script>
+const IMG='?auto=format&fit=crop&w=400&h=300&q=80';
 const PRODUCTS = [
-  {id:1,category:'Dried Fruits',name:'Dried Papaya',weight:'100g',emoji:'🥭',price:5.50,description:'Sun-kissed papaya slices, naturally dehydrated for a sweet tropical chew. No added sugar.'},
-  {id:2,category:'Dried Fruits',name:'Dried Strawberry',weight:'100g',emoji:'🍓',price:9.50,description:'Vibrant freeze-dried strawberries packed with natural antioxidants. Perfect snacking.'},
-  {id:3,category:'Dried Fruits',name:'Dried Apple',weight:'100g',emoji:'🍎',price:6.80,description:'Crisp dehydrated apple rings with all the fibre and flavour, zero preservatives.'},
-  {id:4,category:'Dried Fruits',name:'Dried Sweet Orange',weight:'100g',emoji:'🍊',price:8.20,description:'Peeled and dehydrated navel orange slices — zesty, chewy and 100% natural.'},
-  {id:5,category:'Dried Fruits',name:'Dried Pineapple',weight:'100g',emoji:'🍍',price:9.80,outOfStock:true,description:'Golden pineapple rings slow-dried to intensify natural sweetness. No syrup, no additives.'},
-  {id:6,category:'Dried Fruits',name:'Dried Kiwi',weight:'100g',emoji:'🥝',price:6.20,outOfStock:true,description:'Tangy dried kiwi slices rich in Vitamin C and dietary fibre.'},
-  {id:7,category:'Dried Fruits',name:'Dried Lemon',weight:'100g',emoji:'🍋',price:4.00,outOfStock:true,description:'Tart, zesty dried lemon slices — brilliant for teas, baking and garnishing.'},
-  {id:8,category:'Fruit Powder',name:'Beetroot Powder',weight:'100g',emoji:'🫚',price:5.60,description:'Pure cold-dried beetroot powder. Earthy, vibrant, rich in iron and nitrates.'},
-  {id:9,category:'Fruit Powder',name:'Carrot Powder',weight:'100g',emoji:'🥕',price:4.00,originalPrice:4.40,description:'100% dehydrated carrot powder. Natural beta-carotene boost for smoothies and cooking.'},
-  {id:10,category:'Fruit Powder',name:'Tomato Powder',weight:'100g',emoji:'🍅',price:5.70,outOfStock:true,description:'Rich, deeply-flavoured tomato powder for soups, sauces and seasoning blends.'},
-  {id:11,category:'Fruit Chips',name:'Dried Carrot Chips',weight:'100g',emoji:'🥕',price:3.60,rating:5.0,ratingCount:1,description:'Light and crunchy carrot chips — a guilt-free snack with a satisfying crunch.'},
-  {id:12,category:'Dried Berries',name:'Dried Blueberries',weight:'100g',emoji:'🫐',price:12.00,description:'Plump dried blueberries loaded with antioxidants. Sweet, chewy and irresistible.'},
-  {id:13,category:'Dried Berries',name:'Dried Raspberries',weight:'100g',emoji:'🍓',price:13.50,description:'Tart and sweet dried raspberries — rich in Vitamin C and gorgeous on muesli or yoghurt.'},
-  {id:14,category:'Dried Herbs',name:'Dried Mint',weight:'50g',emoji:'🌿',price:4.00,description:'Cool, aromatic dried mint — great for teas, chutneys and garnishing dishes.'},
-  {id:15,category:'Superfood Powders',name:'Amla Powder',weight:'100g',emoji:'🫐',price:7.50,description:'Premium gooseberry (amla) powder — one of nature\'s richest sources of Vitamin C.'},
+  {id:1,category:'Fruit Chips',name:'Apple Chips',weight:'100g',image:'https://images.unsplash.com/photo-1641291361624-38b69b86b1cf'+IMG,price:6.80,description:'Crisp dehydrated apple rings with all the fibre and flavour, zero preservatives.'},
+  {id:2,category:'Fruit Chips',name:'Pineapple Chips',weight:'100g',image:'https://images.unsplash.com/photo-1617102738820-bee2545405fd'+IMG,price:9.80,description:'Golden pineapple rings slow-dried to intensify their natural sweetness.'},
+  {id:3,category:'Fruit Chips',name:'Papaya Chips',weight:'100g',image:'https://images.unsplash.com/photo-1637541615402-5d2e49da5f1c'+IMG,price:5.50,description:'Sun-kissed papaya slices, naturally dehydrated for a sweet tropical chew. No added sugar.'},
+  {id:4,category:'Veggie Chips',name:'Carrot Chips',weight:'100g',image:'https://images.unsplash.com/photo-1579384264577-79580c9d3a36'+IMG,price:3.60,description:'Light and crunchy carrot chips — a guilt-free snack with a satisfying crunch.'},
+  {id:5,category:'Veggie Chips',name:'Kale Chips',weight:'100g',image:'https://images.unsplash.com/photo-1627662235824-d9f447830c76'+IMG,price:6.50,description:'Light and crispy kale chips loaded with vitamins K, A and C. A true superfood snack.'},
+  {id:6,category:'Superfood Powders',name:'Beetroot Powder',weight:'100g',image:'https://images.unsplash.com/photo-1647531381737-00c3ad41c11d'+IMG,price:5.60,description:'Pure cold-dried beetroot powder. Earthy, vibrant, rich in iron and nitrates.'},
+  {id:7,category:'Superfood Powders',name:'Carrot Powder',weight:'100g',image:'https://images.unsplash.com/photo-1634068221747-e14c0eb75c80'+IMG,price:4.00,description:'100% dehydrated carrot powder — natural beta-carotene boost for smoothies and cooking.'},
+  {id:8,category:'Dried Berries',name:'Dried Blueberries',weight:'100g',image:'https://images.unsplash.com/photo-1605210055791-6c1ebc17f718'+IMG,price:12.00,description:'Plump dried blueberries loaded with antioxidants. Sweet, chewy and irresistible.'},
+  {id:9,category:'Dried Berries',name:'Dried Raspberries',weight:'100g',image:'https://images.unsplash.com/photo-1590785069874-a283f2c8d420'+IMG,price:13.50,description:'Tart and sweet dried raspberries — rich in Vitamin C and gorgeous on muesli or yoghurt.'},
+  {id:10,category:'Dried Herbs',name:'Dried Mint',weight:'50g',image:'https://images.unsplash.com/photo-fOKx5IOniXk'+IMG,price:4.00,description:'Cool, aromatic dried mint — great for teas, chutneys and garnishing dishes.'},
+  {id:11,category:'Superfood Powders',name:'Amla Powder',weight:'100g',image:'https://images.unsplash.com/photo-1755685344391-a9a3a1784fb4'+IMG,price:7.50,description:"Premium gooseberry (amla) powder — one of nature's richest sources of Vitamin C."},
+  {id:12,category:'Fruit Chips',name:'Dragon Fruit Chips',weight:'100g',image:'https://images.unsplash.com/photo-1637541615422-5a5cea20c9c9'+IMG,price:11.00,description:'Exotic dragon fruit chips — visually stunning, mildly sweet and full of nutrients.'},
 ];
-
 let cart = [];
 
 // FILTER & RENDER (homepage shows first 8)
@@ -561,7 +575,7 @@ function renderProducts(filter='all') {
   document.getElementById('productGrid').innerHTML = list.map(p => `
     <div class="product-card">
       <div class="product-img" style="position:relative">
-        <span style="font-size:68px">${p.emoji||'🌿'}</span>
+        <img src="${p.image}" alt="${p.name}" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0" onerror="this.style.display='none'">
         ${p.originalPrice ? '<span class="badge-sale">SALE</span>' : ''}
         ${p.outOfStock ? '<span class="badge-out">OUT OF STOCK</span>' : ''}
         ${!p.outOfStock ? '<button class="hover-add" onclick="addToCart('+p.id+')">+ Add to Cart</button>' : ''}

@@ -347,53 +347,54 @@ footer{background:#0f2318;color:rgba(255,255,255,.65);padding:44px 36px 24px}
 <div class="toast" id="toast"></div>
 
 <script>
+const IMG='?auto=format&fit=crop&w=400&h=300&q=80';
 const PRODUCTS = [
   // Fruit Chips
-  {id:1,category:'Fruit Chips',name:'Grape Chips',weight:'100g',emoji:'🍇',price:7.80,description:'Slow-dehydrated grape slices — naturally sweet, chewy and packed with antioxidants.'},
-  {id:2,category:'Fruit Chips',name:'Apple Chips',weight:'100g',emoji:'🍎',price:6.80,description:'Crisp dehydrated apple rings with all the fibre and flavour, zero preservatives.'},
-  {id:3,category:'Fruit Chips',name:'Banana Chips',weight:'100g',emoji:'🍌',price:5.50,description:'Golden banana chips slow-dried for a naturally sweet, energy-packed snack.'},
-  {id:4,category:'Fruit Chips',name:'Lemon Chips',weight:'100g',emoji:'🍋',price:4.00,description:'Tart, zesty dried lemon slices — brilliant for teas, baking and garnishing.'},
-  {id:5,category:'Fruit Chips',name:'Lime Chips',weight:'100g',emoji:'🍋',price:4.20,description:'Tangy dried lime slices, perfect for infusing water, cocktails and cooking.'},
-  {id:6,category:'Fruit Chips',name:'Orange Chips',weight:'100g',emoji:'🍊',price:8.20,description:'Peeled and dehydrated navel orange slices — zesty, chewy and 100% natural.'},
-  {id:7,category:'Fruit Chips',name:'Kiwi Chips',weight:'100g',emoji:'🥝',price:6.20,description:'Tangy dried kiwi slices rich in Vitamin C and dietary fibre.'},
-  {id:8,category:'Fruit Chips',name:'Rock Melon Chips',weight:'100g',emoji:'🍈',price:7.50,description:'Delicately sweet rock melon slices dehydrated to preserve their natural flavour.'},
-  {id:9,category:'Fruit Chips',name:'Papaya Chips',weight:'100g',emoji:'🥭',price:5.50,description:'Sun-kissed papaya slices, naturally dehydrated for a sweet tropical chew. No added sugar.'},
-  {id:10,category:'Fruit Chips',name:'Pineapple Chips',weight:'100g',emoji:'🍍',price:9.80,description:'Golden pineapple rings slow-dried to intensify their natural sweetness.'},
-  {id:11,category:'Fruit Chips',name:'Guava Chips',weight:'100g',emoji:'🍃',price:6.50,description:'Tropical guava slices dried to a chewy texture, rich in Vitamin C and fibre.'},
-  {id:12,category:'Fruit Chips',name:'Dragon Fruit Chips',weight:'100g',emoji:'🌸',price:11.00,description:'Exotic dragon fruit chips — visually stunning, mildly sweet and full of nutrients.'},
-  {id:13,category:'Fruit Chips',name:'Fig Chips',weight:'100g',emoji:'🟤',price:8.90,description:'Naturally sweet dried fig slices — a rich source of calcium, iron and fibre.'},
+  {id:1,category:'Fruit Chips',name:'Grape Chips',weight:'100g',image:'https://images.unsplash.com/photo-1598799170815-933217492614'+IMG,price:7.80,description:'Slow-dehydrated grape slices — naturally sweet, chewy and packed with antioxidants.'},
+  {id:2,category:'Fruit Chips',name:'Apple Chips',weight:'100g',image:'https://images.unsplash.com/photo-1641291361624-38b69b86b1cf'+IMG,price:6.80,description:'Crisp dehydrated apple rings with all the fibre and flavour, zero preservatives.'},
+  {id:3,category:'Fruit Chips',name:'Banana Chips',weight:'100g',image:'https://images.unsplash.com/photo-1577554105754-602c7bc6adaa'+IMG,price:5.50,description:'Golden banana chips slow-dried for a naturally sweet, energy-packed snack.'},
+  {id:4,category:'Fruit Chips',name:'Lemon Chips',weight:'100g',image:'https://images.unsplash.com/photo-1592227807611-dab16869a0e8'+IMG,price:4.00,description:'Tart, zesty dried lemon slices — brilliant for teas, baking and garnishing.'},
+  {id:5,category:'Fruit Chips',name:'Lime Chips',weight:'100g',image:'https://images.unsplash.com/photo-1598799170795-45f90ddfb662'+IMG,price:4.20,description:'Tangy dried lime slices, perfect for infusing water, cocktails and cooking.'},
+  {id:6,category:'Fruit Chips',name:'Orange Chips',weight:'100g',image:'https://images.unsplash.com/photo-1614766241366-3be1edcaf821'+IMG,price:8.20,description:'Peeled and dehydrated navel orange slices — zesty, chewy and 100% natural.'},
+  {id:7,category:'Fruit Chips',name:'Kiwi Chips',weight:'100g',image:'https://images.unsplash.com/photo-1647945387141-387b88af06fd'+IMG,price:6.20,description:'Tangy dried kiwi slices rich in Vitamin C and dietary fibre.'},
+  {id:8,category:'Fruit Chips',name:'Rock Melon Chips',weight:'100g',image:'https://images.unsplash.com/photo-1637541614619-96b3d446153f'+IMG,price:7.50,description:'Delicately sweet rock melon slices dehydrated to preserve their natural flavour.'},
+  {id:9,category:'Fruit Chips',name:'Papaya Chips',weight:'100g',image:'https://images.unsplash.com/photo-1637541615402-5d2e49da5f1c'+IMG,price:5.50,description:'Sun-kissed papaya slices, naturally dehydrated for a sweet tropical chew. No added sugar.'},
+  {id:10,category:'Fruit Chips',name:'Pineapple Chips',weight:'100g',image:'https://images.unsplash.com/photo-1617102738820-bee2545405fd'+IMG,price:9.80,description:'Golden pineapple rings slow-dried to intensify their natural sweetness.'},
+  {id:11,category:'Fruit Chips',name:'Guava Chips',weight:'100g',image:'https://images.unsplash.com/photo-1637541615205-8654ee01a032'+IMG,price:6.50,description:'Tropical guava slices dried to a chewy texture, rich in Vitamin C and fibre.'},
+  {id:12,category:'Fruit Chips',name:'Dragon Fruit Chips',weight:'100g',image:'https://images.unsplash.com/photo-1637541615422-5a5cea20c9c9'+IMG,price:11.00,description:'Exotic dragon fruit chips — visually stunning, mildly sweet and full of nutrients.'},
+  {id:13,category:'Fruit Chips',name:'Fig Chips',weight:'100g',image:'https://images.unsplash.com/photo-1637541615342-70d9c6ea960c'+IMG,price:8.90,description:'Naturally sweet dried fig slices — a rich source of calcium, iron and fibre.'},
   // Veggie Chips
-  {id:14,category:'Veggie Chips',name:'Onion Chips',weight:'100g',emoji:'🧅',price:4.50,description:'Crispy dehydrated onion slices — intensely flavoured and perfect for snacking or cooking.'},
-  {id:15,category:'Veggie Chips',name:'Carrot Chips',weight:'100g',emoji:'🥕',price:3.60,description:'Light and crunchy carrot chips — a guilt-free snack with a satisfying crunch.'},
-  {id:16,category:'Veggie Chips',name:'Garlic Chips',weight:'100g',emoji:'🧄',price:5.00,description:'Crispy dehydrated garlic slices — bold, aromatic and great for cooking or snacking.'},
-  {id:17,category:'Veggie Chips',name:'Ginger Chips',weight:'100g',emoji:'🫚',price:4.80,description:'Zesty dried ginger slices — warming, digestive and perfect for teas and cooking.'},
-  {id:18,category:'Veggie Chips',name:'Pepper & Chilli Chips',weight:'100g',emoji:'🌶️',price:4.20,description:'Fiery dried chilli and pepper slices — adds a natural kick to any dish.'},
-  {id:19,category:'Veggie Chips',name:'Tomato Chips',weight:'100g',emoji:'🍅',price:5.70,description:'Intensely flavoured dried tomato slices — great for snacking and adding to salads.'},
-  {id:20,category:'Veggie Chips',name:'Beetroot Chips',weight:'100g',emoji:'🟣',price:5.20,description:'Earthy, vibrant beetroot chips — rich in iron, nitrates and natural sweetness.'},
-  {id:21,category:'Veggie Chips',name:'Kale Chips',weight:'100g',emoji:'🥬',price:6.50,description:'Light and crispy kale chips loaded with vitamins K, A and C. A true superfood snack.'},
-  {id:22,category:'Veggie Chips',name:'Cauliflower Chips',weight:'100g',emoji:'🥦',price:5.80,description:'Delicately flavoured cauliflower chips — light, crunchy and low in calories.'},
-  {id:23,category:'Veggie Chips',name:'Bitter Melon Chips',weight:'100g',emoji:'🫛',price:5.50,description:'Traditional bitter melon chips — prized for blood sugar support and digestive benefits.'},
-  {id:24,category:'Veggie Chips',name:'Broccoli Chips',weight:'100g',emoji:'🥦',price:6.20,description:'Crispy broccoli chips packed with fibre, Vitamin C and antioxidants.'},
-  {id:25,category:'Veggie Chips',name:'Eggplant Chips',weight:'100g',emoji:'🍆',price:5.00,description:'Thinly sliced and dehydrated eggplant chips — smoky, savoury and satisfying.'},
+  {id:14,category:'Veggie Chips',name:'Onion Chips',weight:'100g',image:'https://images.unsplash.com/photo-1740993384870-0793845268e6'+IMG,price:4.50,description:'Crispy dehydrated onion slices — intensely flavoured and perfect for snacking or cooking.'},
+  {id:15,category:'Veggie Chips',name:'Carrot Chips',weight:'100g',image:'https://images.unsplash.com/photo-1579384264577-79580c9d3a36'+IMG,price:3.60,description:'Light and crunchy carrot chips — a guilt-free snack with a satisfying crunch.'},
+  {id:16,category:'Veggie Chips',name:'Garlic Chips',weight:'100g',image:'https://images.unsplash.com/photo-1604565011092-c0fa4416f80f'+IMG,price:5.00,description:'Crispy dehydrated garlic slices — bold, aromatic and great for cooking or snacking.'},
+  {id:17,category:'Veggie Chips',name:'Ginger Chips',weight:'100g',image:'https://images.unsplash.com/photo-1578338243320-b9fefa086ef8'+IMG,price:4.80,description:'Zesty dried ginger slices — warming, digestive and perfect for teas and cooking.'},
+  {id:18,category:'Veggie Chips',name:'Pepper & Chilli Chips',weight:'100g',image:'https://images.unsplash.com/photo-1623238912680-26fc5ffb57e4'+IMG,price:4.20,description:'Fiery dried chilli and pepper slices — adds a natural kick to any dish.'},
+  {id:19,category:'Veggie Chips',name:'Tomato Chips',weight:'100g',image:'https://images.unsplash.com/photo-1623238913973-21e45cced554'+IMG,price:5.70,description:'Intensely flavoured dried tomato slices — great for snacking and adding to salads.'},
+  {id:20,category:'Veggie Chips',name:'Beetroot Chips',weight:'100g',image:'https://images.unsplash.com/photo-1634213706953-d98bcabceb2c'+IMG,price:5.20,description:'Earthy, vibrant beetroot chips — rich in iron, nitrates and natural sweetness.'},
+  {id:21,category:'Veggie Chips',name:'Kale Chips',weight:'100g',image:'https://images.unsplash.com/photo-1627662235824-d9f447830c76'+IMG,price:6.50,description:'Light and crispy kale chips loaded with vitamins K, A and C. A true superfood snack.'},
+  {id:22,category:'Veggie Chips',name:'Cauliflower Chips',weight:'100g',image:'https://images.unsplash.com/photo-1546637815-d66dfd777017'+IMG,price:5.80,description:'Delicately flavoured cauliflower chips — light, crunchy and low in calories.'},
+  {id:23,category:'Veggie Chips',name:'Bitter Melon Chips',weight:'100g',image:'https://images.unsplash.com/photo-1546637778-7f93d2928e07'+IMG,price:5.50,description:'Traditional bitter melon chips — prized for blood sugar support and digestive benefits.'},
+  {id:24,category:'Veggie Chips',name:'Broccoli Chips',weight:'100g',image:'https://images.unsplash.com/photo-1522859232762-5c42047b6675'+IMG,price:6.20,description:'Crispy broccoli chips packed with fibre, Vitamin C and antioxidants.'},
+  {id:25,category:'Veggie Chips',name:'Eggplant Chips',weight:'100g',image:'https://images.unsplash.com/photo-1715758622217-3f9531d59c31'+IMG,price:5.00,description:'Thinly sliced and dehydrated eggplant chips — smoky, savoury and satisfying.'},
   // Superfood Powders
-  {id:26,category:'Superfood Powders',name:'Onion Powder',weight:'100g',emoji:'🧅',price:4.50,description:'Pure dehydrated onion powder — a kitchen essential with deep, sweet onion flavour.'},
-  {id:27,category:'Superfood Powders',name:'Garlic Powder',weight:'100g',emoji:'🧄',price:5.00,description:'100% natural garlic powder — bold, aromatic and free from additives.'},
-  {id:28,category:'Superfood Powders',name:'Ginger Powder',weight:'100g',emoji:'🫚',price:4.80,description:'Pure dried ginger powder — warming, anti-inflammatory and perfect for cooking and wellness.'},
-  {id:29,category:'Superfood Powders',name:'Pepper Powder',weight:'100g',emoji:'🌶️',price:5.20,description:'Naturally dried pepper powder — adds a clean, sharp heat to any dish.'},
-  {id:30,category:'Superfood Powders',name:'Carrot Powder',weight:'100g',emoji:'🥕',price:4.00,description:'100% dehydrated carrot powder — natural beta-carotene boost for smoothies and cooking.'},
-  {id:31,category:'Superfood Powders',name:'Tomato Powder',weight:'100g',emoji:'🍅',price:5.70,description:'Rich, deeply-flavoured tomato powder for soups, sauces and seasoning.'},
-  {id:32,category:'Superfood Powders',name:'Beetroot Powder',weight:'100g',emoji:'🟣',price:5.60,description:'Pure cold-dried beetroot powder. Earthy, vibrant, rich in iron and nitrates.'},
-  {id:33,category:'Superfood Powders',name:'Pumpkin Powder',weight:'100g',emoji:'🎃',price:6.00,description:'Naturally sweet pumpkin powder — rich in beta-carotene and perfect for baking and smoothies.'},
-  {id:34,category:'Superfood Powders',name:'Amla Powder',weight:'100g',emoji:'🫐',price:7.50,description:'Premium gooseberry (amla) powder — one of nature\'s richest sources of Vitamin C.'},
+  {id:26,category:'Superfood Powders',name:'Onion Powder',weight:'100g',image:'https://images.unsplash.com/photo-1632001605599-54f8b1c3fe3a'+IMG,price:4.50,description:'Pure dehydrated onion powder — a kitchen essential with deep, sweet onion flavour.'},
+  {id:27,category:'Superfood Powders',name:'Garlic Powder',weight:'100g',image:'https://images.unsplash.com/photo-1664956618403-175f565f18be'+IMG,price:5.00,description:'100% natural garlic powder — bold, aromatic and free from additives.'},
+  {id:28,category:'Superfood Powders',name:'Ginger Powder',weight:'100g',image:'https://images.unsplash.com/photo-1633509817627-5a29634475af'+IMG,price:4.80,description:'Pure dried ginger powder — warming, anti-inflammatory and perfect for cooking and wellness.'},
+  {id:29,category:'Superfood Powders',name:'Pepper Powder',weight:'100g',image:'https://images.unsplash.com/photo-1633509907796-ece8a21bdbcb'+IMG,price:5.20,description:'Naturally dried pepper powder — adds a clean, sharp heat to any dish.'},
+  {id:30,category:'Superfood Powders',name:'Carrot Powder',weight:'100g',image:'https://images.unsplash.com/photo-1634068221747-e14c0eb75c80'+IMG,price:4.00,description:'100% dehydrated carrot powder — natural beta-carotene boost for smoothies and cooking.'},
+  {id:31,category:'Superfood Powders',name:'Tomato Powder',weight:'100g',image:'https://images.unsplash.com/photo-1622484212839-2425bcf558f3'+IMG,price:5.70,description:'Rich, deeply-flavoured tomato powder for soups, sauces and seasoning.'},
+  {id:32,category:'Superfood Powders',name:'Beetroot Powder',weight:'100g',image:'https://images.unsplash.com/photo-1647531381737-00c3ad41c11d'+IMG,price:5.60,description:'Pure cold-dried beetroot powder. Earthy, vibrant, rich in iron and nitrates.'},
+  {id:33,category:'Superfood Powders',name:'Pumpkin Powder',weight:'100g',image:'https://images.unsplash.com/photo-1628082361368-d842049f0d69'+IMG,price:6.00,description:'Naturally sweet pumpkin powder — rich in beta-carotene and perfect for baking and smoothies.'},
+  {id:34,category:'Superfood Powders',name:'Amla Powder',weight:'100g',image:'https://images.unsplash.com/photo-1755685344391-a9a3a1784fb4'+IMG,price:7.50,description:"Premium gooseberry (amla) powder — one of nature's richest sources of Vitamin C."},
   // Dried Berries
-  {id:35,category:'Dried Berries',name:'Dried Blueberries',weight:'100g',emoji:'🫐',price:12.00,description:'Plump dried blueberries loaded with antioxidants. Sweet, chewy and irresistible.'},
-  {id:36,category:'Dried Berries',name:'Dried Raspberries',weight:'100g',emoji:'🍓',price:13.50,description:'Tart and sweet dried raspberries — rich in Vitamin C and a gorgeous addition to muesli or yoghurt.'},
-  {id:37,category:'Dried Berries',name:'Dried Blackberries',weight:'100g',emoji:'🫐',price:13.00,description:'Deeply flavoured dried blackberries packed with anthocyanins and natural sweetness.'},
-  {id:38,category:'Dried Berries',name:'Dried Grapes',weight:'100g',emoji:'🍇',price:8.50,description:'Premium naturally dried grapes — rich, sweet and packed with resveratrol.'},
+  {id:35,category:'Dried Berries',name:'Dried Blueberries',weight:'100g',image:'https://images.unsplash.com/photo-1605210055791-6c1ebc17f718'+IMG,price:12.00,description:'Plump dried blueberries loaded with antioxidants. Sweet, chewy and irresistible.'},
+  {id:36,category:'Dried Berries',name:'Dried Raspberries',weight:'100g',image:'https://images.unsplash.com/photo-1590785069874-a283f2c8d420'+IMG,price:13.50,description:'Tart and sweet dried raspberries — rich in Vitamin C and gorgeous on muesli or yoghurt.'},
+  {id:37,category:'Dried Berries',name:'Dried Blackberries',weight:'100g',image:'https://images.unsplash.com/photo-1562536518-ebc5fb6722f3'+IMG,price:13.00,description:'Deeply flavoured dried blackberries packed with anthocyanins and natural sweetness.'},
+  {id:38,category:'Dried Berries',name:'Dried Grapes',weight:'100g',image:'https://images.unsplash.com/photo-1521192520982-5d6ca468a30f'+IMG,price:8.50,description:'Premium naturally dried grapes — rich, sweet and packed with resveratrol.'},
   // Dried Herbs
-  {id:39,category:'Dried Herbs',name:'Dried Dill',weight:'50g',emoji:'🌿',price:3.80,description:'Fragrant dried dill — perfect for pickling, dressings, fish dishes and more.'},
-  {id:40,category:'Dried Herbs',name:'Dried Mint',weight:'50g',emoji:'🌿',price:4.00,description:'Cool, aromatic dried mint — great for teas, chutneys and garnishing dishes.'},
-  {id:41,category:'Dried Herbs',name:'Dried Parsley',weight:'50g',emoji:'🌿',price:3.80,description:'Bright, earthy dried parsley — a versatile herb for seasoning and garnishing.'},
+  {id:39,category:'Dried Herbs',name:'Dried Dill',weight:'50g',image:'https://images.unsplash.com/photo-HcpqoHit2zg'+IMG,price:3.80,description:'Fragrant dried dill — perfect for pickling, dressings, fish dishes and more.'},
+  {id:40,category:'Dried Herbs',name:'Dried Mint',weight:'50g',image:'https://images.unsplash.com/photo-fOKx5IOniXk'+IMG,price:4.00,description:'Cool, aromatic dried mint — great for teas, chutneys and garnishing dishes.'},
+  {id:41,category:'Dried Herbs',name:'Dried Parsley',weight:'50g',image:'https://images.unsplash.com/photo-eUjzGp1pGws'+IMG,price:3.80,description:'Bright, earthy dried parsley — a versatile herb for seasoning and garnishing.'},
 ];
 
 let cart=[], currentCat='all', currentMaxPrice=15, sortMode='default', searchQuery='', showInStock=true, showOutOfStock=true;
@@ -460,7 +461,7 @@ function renderProducts(list){
   grid.innerHTML=list.map(p=>`
     <div class="product-card">
       <div class="product-img" style="position:relative">
-        <span style="font-size:68px">${p.emoji||'🌿'}</span>
+        <img src="${p.image}" alt="${p.name}" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0" onerror="this.style.display='none'">
         ${p.originalPrice?'<span class="badge-sale">SALE</span>':''}
         ${p.outOfStock?'<span class="badge-out">OUT OF STOCK</span>':''}
         ${!p.outOfStock?'<button class="hover-add" onclick="addToCart('+p.id+')">+ Add to Cart</button>':''}
