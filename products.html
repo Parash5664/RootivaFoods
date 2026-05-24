@@ -101,8 +101,7 @@ header{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);box-shadow:0 
 .product-footer{display:flex;align-items:center;justify-content:space-between;margin-top:auto}
 .product-rating{display:flex;align-items:center;gap:3px;font-size:11px;color:var(--gray)}
 .product-rating .stars{color:#f59e0b;font-size:12px}
-.price-block .price{font-size:18px;font-weight:700;color:var(--green)}
-.price-block .price-old{font-size:11px;color:var(--gray);text-decoration:line-through;margin-left:5px}
+.coming-soon{display:inline-block;background:var(--gold-pale);color:var(--gold);font-size:11px;font-weight:700;padding:5px 14px;border-radius:50px;border:1px solid rgba(192,124,40,.3);letter-spacing:.8px;text-transform:uppercase}
 
 /* CART */
 .cart-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:200;backdrop-filter:blur(2px)}
@@ -251,12 +250,7 @@ footer{background:#0f2318;color:rgba(255,255,255,.65);padding:44px 36px 24px}
       <div class="sidebar-title">Categories</div>
       <div id="catFilterBtns"></div>
     </div>
-    <div class="sidebar-section">
-      <div class="sidebar-title">Price Range</div>
-      <div class="price-range">
-        <input type="range" id="priceRange" min="0" max="15" step="0.5" value="15" oninput="handlePriceFilter(this.value)">
-        <div class="price-labels"><span>A$0</span><span id="priceMax">A$15.00</span></div>
-      </div>
+    
     </div>
     <div class="sidebar-section">
       <div class="sidebar-title">Availability</div>
@@ -420,7 +414,6 @@ function applyFilters(){
   showOutOfStock=document.getElementById('showOutOfStock').checked;
   let list=PRODUCTS.filter(p=>{
     if(currentCat!=='all'&&p.category!==currentCat) return false;
-    if(p.price>currentMaxPrice) return false;
     if(!showInStock&&!p.outOfStock) return false;
     if(!showOutOfStock&&p.outOfStock) return false;
     if(searchQuery&&!p.name.toLowerCase().includes(searchQuery)&&!p.category.toLowerCase().includes(searchQuery)) return false;
@@ -437,7 +430,6 @@ function applyFilters(){
 function updateActiveFilters(){
   const tags=[];
   if(currentCat!=='all') tags.push('<span class="active-filter-tag">'+currentCat+'<button onclick="setCat(\'all\')">✕</button></span>');
-  if(currentMaxPrice<15) tags.push('<span class="active-filter-tag">Under A$'+currentMaxPrice.toFixed(2)+'<button onclick="resetPrice()">✕</button></span>');
   document.getElementById('activeFilters').innerHTML=tags.join('');
 }
 
@@ -466,10 +458,7 @@ function renderProducts(list){
             <span class="stars">${'★'.repeat(Math.round(p.rating||5))}</span>
             <span style="margin-left:3px">${p.rating||5}.0 (${p.ratingCount||0})</span>
           </div>
-          <div class="price-block">
-            <span style="font-size:12px;font-weight:500;opacity:.7">A</span><span class="price">$${p.price.toFixed(2)}</span>
-            ${p.originalPrice?'<span class="price-old">A$'+p.originalPrice.toFixed(2)+'</span>':''}
-          </div>
+          <div class="price-block"><span class="coming-soon">Coming Soon</span></div>
         </div>
       </div>
     </div>
