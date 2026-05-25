@@ -175,7 +175,7 @@ header{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);box-shadow:0 
 .avail-opt input{accent-color:var(--green);width:15px;height:15px;cursor:pointer}
 
 /* MAIN CONTENT */
-.shop-main{}
+.shop-main{min-width:0}
 .shop-toolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px}
 .results-count{font-size:13px;color:var(--gray)}
 .results-count strong{color:var(--dark)}
@@ -280,6 +280,36 @@ header{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);box-shadow:0 
 .no-products{grid-column:1/-1;text-align:center;padding:80px 20px;color:var(--gray)}
 .no-products .np-icon{font-size:56px;margin-bottom:16px}
 .no-products h3{font-family:var(--font-display);font-size:22px;color:var(--green);margin-bottom:8px;font-weight:700}
+
+/* PRODUCT DETAIL MODAL */
+.pd-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.62);z-index:500;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(6px)}
+.pd-overlay.open{display:flex}
+.pd-modal{background:#fff;border-radius:24px;max-width:880px;width:100%;max-height:92vh;overflow:hidden;display:flex;flex-direction:row;box-shadow:0 32px 96px rgba(0,0,0,.3);animation:pdSlideIn .28s ease}
+@keyframes pdSlideIn{from{opacity:0;transform:scale(.96) translateY(10px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.pd-img-col{width:44%;flex-shrink:0;position:relative;background:var(--green-pale);overflow:hidden}
+.pd-img-col img{width:100%;height:100%;object-fit:cover;display:block}
+.pd-close{position:absolute;top:14px;right:14px;background:rgba(0,0,0,.45);border:none;color:#fff;width:34px;height:34px;border-radius:50%;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10;transition:.2s;line-height:1}
+.pd-close:hover{background:rgba(0,0,0,.72)}
+.pd-content{flex:1;padding:36px 32px 28px;overflow-y:auto;display:flex;flex-direction:column;min-height:0}
+.pd-cat{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--green-mid);font-weight:700;margin-bottom:6px}
+.pd-name{font-family:var(--font-display);font-size:30px;font-weight:700;color:var(--green);line-height:1.2;margin-bottom:4px}
+.pd-weight{font-size:13px;color:var(--gray);margin-bottom:14px}
+.pd-badge-row{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px}
+.pd-badge{display:inline-flex;align-items:center;background:var(--green-pale);border:1px solid rgba(26,77,46,.18);color:var(--green);padding:4px 11px;border-radius:50px;font-size:11px;font-weight:600;letter-spacing:.3px}
+.pd-desc{font-size:13.5px;color:#555;line-height:1.8;margin-bottom:20px;font-weight:300;border-left:3px solid var(--green-light);padding-left:14px}
+.pd-benefits-hd{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--green);font-weight:700;margin-bottom:10px}
+.pd-benefits{list-style:none;margin-bottom:22px;display:flex;flex-direction:column;gap:9px}
+.pd-benefits li{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:#444;line-height:1.6}
+.pd-check{flex-shrink:0;width:20px;height:20px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;margin-top:2px}
+.pd-coming{display:block;text-align:center;background:var(--gold-pale);color:var(--gold);font-size:11px;font-weight:700;padding:8px 14px;border-radius:50px;border:1px solid rgba(192,124,40,.3);letter-spacing:.8px;text-transform:uppercase;margin-bottom:16px}
+.pd-order-btn{width:100%;background:var(--wa);color:#fff;border:none;padding:15px;border-radius:12px;font-size:14px;font-weight:600;cursor:pointer;font-family:var(--font-body);display:flex;align-items:center;justify-content:center;gap:10px;transition:.2s;margin-top:auto}
+.pd-order-btn:hover{background:#1da851;transform:translateY(-1px)}
+@media(max-width:640px){
+  .pd-modal{flex-direction:column;max-height:96vh;border-radius:18px}
+  .pd-img-col{width:100%;height:230px;flex-shrink:0}
+  .pd-content{padding:20px 18px 20px}
+  .pd-name{font-size:24px}
+}
 
 footer{background:#0f2318;color:rgba(255,255,255,.65);padding:44px 36px 24px}
 .footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px}
@@ -476,6 +506,34 @@ footer{background:#0f2318;color:rgba(255,255,255,.65);padding:44px 36px 24px}
   </div>
 </div>
 
+<!-- PRODUCT DETAIL MODAL -->
+<div class="pd-overlay" id="pdOverlay" onclick="if(event.target===this)closeProductModal()">
+  <div class="pd-modal">
+    <div class="pd-img-col">
+      <button class="pd-close" onclick="closeProductModal()" aria-label="Close">✕</button>
+      <img id="pdImg" src="" alt="" loading="eager">
+    </div>
+    <div class="pd-content">
+      <div class="pd-cat" id="pdCat"></div>
+      <div class="pd-name" id="pdName"></div>
+      <div class="pd-weight" id="pdWeight"></div>
+      <div class="pd-badge-row">
+        <span class="pd-badge">🌿 100% Natural</span>
+        <span class="pd-badge">✅ No Preservatives</span>
+        <span class="pd-badge">📦 Australia-Wide</span>
+      </div>
+      <div class="pd-desc" id="pdDesc"></div>
+      <div class="pd-benefits-hd">Health Benefits</div>
+      <ul class="pd-benefits" id="pdBenefits"></ul>
+      <span class="pd-coming">Pricing Coming Soon</span>
+      <button class="pd-order-btn" id="pdOrderBtn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        Order Now via WhatsApp
+      </button>
+    </div>
+  </div>
+</div>
+
 <a href="https://wa.me/61452295664?text=Hi%20Rootiva%20Foods!" target="_blank" class="wa-float">
   <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
 </a>
@@ -484,42 +542,108 @@ footer{background:#0f2318;color:rgba(255,255,255,.65);padding:44px 36px 24px}
 <script>
 const PRODUCTS = [
   // Dried Fruits (9)
-  {id:1, category:'Dried Fruits', name:'Dried Blueberry',   weight:'100g', image:'images/Dried-Fruits/Dried_Blueberry.png',            price:12.00, description:'Plump dried blueberries packed with antioxidants — sweet, chewy and irresistible.'},
-  {id:2, category:'Dried Fruits', name:'Dried Raspberry',   weight:'100g', image:'images/Dried-Fruits/Dried_Raspberry.png',            price:13.50, description:'Tart and sweet dried raspberries — rich in Vitamin C, perfect on muesli or yoghurt.'},
-  {id:3, category:'Dried Fruits', name:'Dried Blackberry',  weight:'100g', image:'images/Dried-Fruits/Dried_Blackberry.png',           price:13.00, description:'Deeply flavoured dried blackberries packed with anthocyanins and natural sweetness.'},
-  {id:4, category:'Dried Fruits', name:'Dried Grapes',      weight:'100g', image:'images/Dried-Fruits/Dried_Grapes.png',               price:8.50,  description:'Premium naturally dried grapes — rich, sweet and packed with resveratrol.'},
-  {id:5, category:'Dried Fruits', name:'Dried Papaya',      weight:'100g', image:'images/Dried-Fruits/Dried_Papaya.png',               price:5.50,  description:'Sun-kissed papaya slices, naturally dehydrated for a sweet tropical chew. No added sugar.'},
-  {id:6, category:'Dried Fruits', name:'Dried Strawberry',  weight:'100g', image:'images/Dried-Fruits/Dried_Straberry.png',            price:10.50, description:'Vibrant freeze-dried strawberry slices packed with natural antioxidants.'},
-  {id:7, category:'Dried Fruits', name:'Dried Apple',       weight:'100g', image:'images/Dried-Fruits/Dried_Apple.png',                price:6.80,  description:'Crisp dehydrated apple rings with all the fibre and flavour, zero preservatives.'},
-  {id:8, category:'Dried Fruits', name:'Dried Pineapple',   weight:'100g', image:'images/Dried-Fruits/Dried_pineapple.png',            price:9.80,  description:'Golden pineapple rings slow-dried to intensify their natural sweetness.'},
-  {id:9, category:'Dried Fruits', name:'Dried Banana',      weight:'100g', image:'images/Dried-Fruits/Dried_Banana%20.png',            price:5.50,  description:'Golden banana chips slow-dried for a naturally sweet, energy-packed snack.'},
+  {id:1, category:'Dried Fruits', name:'Dried Blueberry', weight:'100g', image:'images/Dried-Fruits/Dried_Blueberry.png', price:12.00,
+    description:'Plump dried blueberries packed with antioxidants — sweet, chewy and irresistible.',
+    benefits:['Exceptionally high in antioxidants that protect brain cells from oxidative damage','Supports heart health and may help reduce LDL cholesterol levels','Rich in Vitamin C and Vitamin K for immune and bone support','May improve memory, concentration and cognitive function']},
+  {id:2, category:'Dried Fruits', name:'Dried Raspberry', weight:'100g', image:'images/Dried-Fruits/Dried_Raspberry.png', price:13.50,
+    description:'Tart and sweet dried raspberries — rich in Vitamin C, perfect on muesli or yoghurt.',
+    benefits:['High in dietary fibre that supports healthy digestion and gut bacteria','Packed with Vitamin C for robust immune defence and skin health','Rich in ellagic acid and quercetin — powerful antioxidants with anti-cancer properties','Supports healthy blood sugar regulation and insulin sensitivity']},
+  {id:3, category:'Dried Fruits', name:'Dried Blackberry', weight:'100g', image:'images/Dried-Fruits/Dried_Blackberry.png', price:13.00,
+    description:'Deeply flavoured dried blackberries packed with anthocyanins and natural sweetness.',
+    benefits:['Abundant in anthocyanins with powerful anti-inflammatory and antioxidant action','High in Vitamin K essential for blood clotting and bone mineralisation','Rich in dietary fibre for gut health and sustained energy release','Natural source of manganese supporting brain function and metabolism']},
+  {id:4, category:'Dried Fruits', name:'Dried Grapes', weight:'100g', image:'images/Dried-Fruits/Dried_Grapes.png', price:8.50,
+    description:'Premium naturally dried grapes — rich, sweet and packed with resveratrol.',
+    benefits:['Contains resveratrol, a polyphenol clinically linked to heart health and longevity','Good source of natural iron supporting healthy red blood cell production','Rich in potassium to regulate blood pressure and heart rhythm','Provides natural sugars for quick, sustained energy without artificial additives']},
+  {id:5, category:'Dried Fruits', name:'Dried Papaya', weight:'100g', image:'images/Dried-Fruits/Dried_Papaya.png', price:5.50,
+    description:'Sun-kissed papaya slices, naturally dehydrated for a sweet tropical chew. No added sugar.',
+    benefits:['Contains papain enzyme that breaks down proteins and aids digestion naturally','Rich in Vitamin C to strengthen immunity and promote collagen production','Natural source of beta-carotene supporting eye health and night vision','Anti-inflammatory properties help reduce joint pain and swelling']},
+  {id:6, category:'Dried Fruits', name:'Dried Strawberry', weight:'100g', image:'images/Dried-Fruits/Dried_Straberry.png', price:10.50,
+    description:'Vibrant freeze-dried strawberry slices packed with natural antioxidants.',
+    benefits:['Among the highest Vitamin C content of all fruits — boosts immunity and skin health','Supports heart health by reducing oxidative stress and improving circulation','Rich in folate (Vitamin B9) essential for cellular repair and DNA synthesis','Potent anthocyanins and quercetin protect against chronic disease and ageing']},
+  {id:7, category:'Dried Fruits', name:'Dried Apple', weight:'100g', image:'images/Dried-Fruits/Dried_Apple.png', price:6.80,
+    description:'Crisp dehydrated apple rings with all the fibre and flavour, zero preservatives.',
+    benefits:['High in dietary fibre including pectin, which acts as a prebiotic for gut bacteria','Contains quercetin and catechin — flavonoids linked to reduced inflammation','Natural source of Vitamin C for immune support and skin health','Supports healthy weight management by promoting feelings of fullness']},
+  {id:8, category:'Dried Fruits', name:'Dried Pineapple', weight:'100g', image:'images/Dried-Fruits/Dried_pineapple.png', price:9.80,
+    description:'Golden pineapple rings slow-dried to intensify their natural sweetness.',
+    benefits:['Contains bromelain, a powerful enzyme that aids protein digestion and reduces inflammation','Excellent source of Vitamin C and manganese for immunity and metabolism','Anti-inflammatory properties may reduce post-exercise muscle soreness','Supports immune function and accelerates tissue healing and recovery']},
+  {id:9, category:'Dried Fruits', name:'Dried Banana', weight:'100g', image:'images/Dried-Fruits/Dried_Banana%20.png', price:5.50,
+    description:'Golden banana chips slow-dried for a naturally sweet, energy-packed snack.',
+    benefits:['Rich in potassium for healthy heart function and muscle performance','Natural energy from fructose and glucose — ideal pre or post workout snack','Good source of magnesium that promotes relaxation and quality sleep','Vitamin B6 supports mood regulation and brain neurotransmitter production']},
   // Dried Vegetables (11)
-  {id:10,category:'Dried Vegetables', name:'Dried Carrot',          weight:'100g', image:'images/Dried-Vegitables/Dried_Carrot.png',          price:3.60,  description:'Light and crunchy carrot chips — a guilt-free snack full of beta-carotene.'},
-  {id:11,category:'Dried Vegetables', name:'Dried Garlic',          weight:'100g', image:'images/Dried-Vegitables/Dried_Garlic.png',          price:5.00,  description:'Crispy dehydrated garlic slices — bold, aromatic and great for cooking.'},
-  {id:12,category:'Dried Vegetables', name:'Dried Ginger',          weight:'100g', image:'images/Dried-Vegitables/Dried_Ginger.png',          price:4.80,  description:'Zesty dried ginger slices — warming, digestive and perfect for teas and cooking.'},
-  {id:13,category:'Dried Vegetables', name:'Dried Pepper & Chilli', weight:'100g', image:'images/Dried-Vegitables/dried_Chille_pepper.png',   price:4.20,  description:'Fiery dried chilli and pepper slices — adds a natural kick to any dish.'},
-  {id:14,category:'Dried Vegetables', name:'Dried Tomatoes',        weight:'100g', image:'images/Dried-Vegitables/Dried_Tomatoes.png',        price:5.70,  description:'Intensely flavoured dried tomato slices — great for snacking, salads and cooking.'},
-  {id:15,category:'Dried Vegetables', name:'Dried Beetroot',        weight:'100g', image:'images/Dried-Vegitables/Dried_beetroots.png',       price:5.20,  description:'Earthy, vibrant beetroot chips — rich in iron, nitrates and natural sweetness.'},
-  {id:16,category:'Dried Vegetables', name:'Dried Kale',            weight:'100g', image:'images/Dried-Vegitables/Dried_Kale.png',            price:6.50,  description:'Light and crispy kale chips loaded with vitamins K, A and C.'},
-  {id:17,category:'Dried Vegetables', name:'Dried Cauliflower',     weight:'100g', image:'images/Dried-Vegitables/Dried_Cauliflower.png',     price:5.80,  description:'Delicately flavoured cauliflower chips — light, crunchy and low in calories.'},
-  {id:18,category:'Dried Vegetables', name:'Dried Bitter Melon',    weight:'100g', image:'images/Dried-Vegitables/Dried_Bitter_Melon.png',   price:5.50,  description:'Traditional bitter melon chips — prized for blood sugar support and digestion.'},
-  {id:19,category:'Dried Vegetables', name:'Dried Broccoli',        weight:'100g', image:'images/Dried-Vegitables/Dried_Broccoli.png',        price:6.20,  description:'Crispy broccoli chips packed with fibre, Vitamin C and antioxidants.'},
-  {id:20,category:'Dried Vegetables', name:'Dried Eggplant',        weight:'100g', image:'images/Dried-Vegitables/Dried_Eggplant.png',        price:5.00,  description:'Thinly sliced dehydrated eggplant — smoky, savoury and satisfying.'},
+  {id:10, category:'Dried Vegetables', name:'Dried Carrot', weight:'100g', image:'images/Dried-Vegitables/Dried_Carrot.png', price:3.60,
+    description:'Light and crunchy carrot chips — a guilt-free snack full of beta-carotene.',
+    benefits:['Exceptionally high in beta-carotene that the body converts to Vitamin A','Supports sharp vision and eye health, especially night vision','Antioxidants protect skin from UV damage and premature ageing','High in fibre supporting healthy digestion and cholesterol management']},
+  {id:11, category:'Dried Vegetables', name:'Dried Garlic', weight:'100g', image:'images/Dried-Vegitables/Dried_Garlic.png', price:5.00,
+    description:'Crispy dehydrated garlic slices — bold, aromatic and great for cooking.',
+    benefits:['Allicin compound has powerful antimicrobial and antifungal properties','Clinically shown to support cardiovascular health and reduce blood pressure','Boosts immune system response against colds, flu and infections','Rich in antioxidants that reduce oxidative stress and slow cellular ageing']},
+  {id:12, category:'Dried Vegetables', name:'Dried Ginger', weight:'100g', image:'images/Dried-Vegitables/Dried_Ginger.png', price:4.80,
+    description:'Zesty dried ginger slices — warming, digestive and perfect for teas and cooking.',
+    benefits:['Potent anti-inflammatory gingerols reduce joint pain and arthritis symptoms','Effectively relieves nausea including morning sickness and motion sickness','Stimulates digestive enzymes to reduce bloating, gas and indigestion','Improves blood circulation and provides a warming thermogenic effect']},
+  {id:13, category:'Dried Vegetables', name:'Dried Pepper & Chilli', weight:'100g', image:'images/Dried-Vegitables/dried_Chille_pepper.png', price:4.20,
+    description:'Fiery dried chilli and pepper slices — adds a natural kick to any dish.',
+    benefits:['Capsaicin boosts metabolism and supports healthy fat burning','Richer in Vitamin C than oranges — powerful immune and skin support','Anti-inflammatory and antioxidant compounds protect against chronic disease','Capsaicin may act as a natural pain reliever by desensitising pain receptors']},
+  {id:14, category:'Dried Vegetables', name:'Dried Tomatoes', weight:'100g', image:'images/Dried-Vegitables/Dried_Tomatoes.png', price:5.70,
+    description:'Intensely flavoured dried tomato slices — great for snacking, salads and cooking.',
+    benefits:['Richest dietary source of lycopene, a powerful antioxidant linked to cancer prevention','Supports prostate health and reduces cardiovascular disease risk','High in Vitamin C and Vitamin K for immunity and bone density','Concentrated natural glutamates provide deep umami flavour and trace minerals']},
+  {id:15, category:'Dried Vegetables', name:'Dried Beetroot', weight:'100g', image:'images/Dried-Vegitables/Dried_beetroots.png', price:5.20,
+    description:'Earthy, vibrant beetroot chips — rich in iron, nitrates and natural sweetness.',
+    benefits:['High in natural nitrates that dilate blood vessels and lower blood pressure','Rich in iron supporting red blood cell production and combating fatigue','Improves athletic endurance and reduces oxygen demand during exercise','Betaine compound supports liver detoxification and healthy metabolic function']},
+  {id:16, category:'Dried Vegetables', name:'Dried Kale', weight:'100g', image:'images/Dried-Vegitables/Dried_Kale.png', price:6.50,
+    description:'Light and crispy kale chips loaded with vitamins K, A and C.',
+    benefits:['One of the most nutrient-dense foods — rich in Vitamins K, A, C and B6','Excellent calcium source supporting strong bones, teeth and nerve function','Lutein and zeaxanthin protect eye health and reduce macular degeneration risk','Sulforaphane has anti-cancer properties and supports liver detoxification']},
+  {id:17, category:'Dried Vegetables', name:'Dried Cauliflower', weight:'100g', image:'images/Dried-Vegitables/Dried_Cauliflower.png', price:5.80,
+    description:'Delicately flavoured cauliflower chips — light, crunchy and low in calories.',
+    benefits:['Very low in calories — perfect for weight management and healthy snacking','Rich in choline, a nutrient essential for brain development and memory','High in dietary fibre promoting gut health, satiety and bowel regularity','Contains sulforaphane with clinically researched anti-cancer properties']},
+  {id:18, category:'Dried Vegetables', name:'Dried Bitter Melon', weight:'100g', image:'images/Dried-Vegitables/Dried_Bitter_Melon.png', price:5.50,
+    description:'Traditional bitter melon chips — prized for blood sugar support and digestion.',
+    benefits:['Traditionally used in Ayurvedic medicine to support healthy blood sugar levels','Polypeptide-p compound mimics insulin action to help regulate glucose','Rich in Vitamin C and antioxidants that strengthen the immune system','Supports healthy digestion and liver function through bitter compounds']},
+  {id:19, category:'Dried Vegetables', name:'Dried Broccoli', weight:'100g', image:'images/Dried-Vegitables/Dried_Broccoli.png', price:6.20,
+    description:'Crispy broccoli chips packed with fibre, Vitamin C and antioxidants.',
+    benefits:['Contains sulforaphane — one of the most potent natural anti-cancer compounds','Excellent source of Vitamin C, K and folate for immunity and cellular health','High in fibre that nourishes beneficial gut bacteria and supports digestion','Rich in iron and calcium for energy, bone strength and red blood cell production']},
+  {id:20, category:'Dried Vegetables', name:'Dried Eggplant', weight:'100g', image:'images/Dried-Vegitables/Dried_Eggplant.png', price:5.00,
+    description:'Thinly sliced dehydrated eggplant — smoky, savoury and satisfying.',
+    benefits:['Nasunin in the skin is a potent antioxidant that protects brain cell membranes','Chlorogenic acid reduces LDL cholesterol and supports heart health','High in dietary fibre for gut health, satiety and healthy blood sugar levels','Rich in anthocyanins with anti-inflammatory and anti-ageing properties']},
   // Dried Herbs (3)
-  {id:21,category:'Dried Herbs', name:'Dried Dill',    weight:'50g', image:'images/Dried-Herbs/Dried_Dill_Leaves.png', price:3.80, description:'Fragrant dried dill — perfect for pickling, dressings and fish dishes.'},
-  {id:22,category:'Dried Herbs', name:'Dried Mint',    weight:'50g', image:'images/Dried-Herbs/Dried_Mint.png',        price:4.00, description:'Cool, aromatic dried mint — great for teas, chutneys and garnishing.'},
-  {id:23,category:'Dried Herbs', name:'Dried Parsley', weight:'50g', image:'images/Dried-Herbs/Dried_Parsley.png',     price:3.80, description:'Bright, earthy dried parsley — a versatile herb for seasoning and garnishing.'},
+  {id:21, category:'Dried Herbs', name:'Dried Dill', weight:'50g', image:'images/Dried-Herbs/Dried_Dill_Leaves.png', price:3.80,
+    description:'Fragrant dried dill — perfect for pickling, dressings and fish dishes.',
+    benefits:['Supports healthy digestion and relieves bloating and stomach cramps','Contains antibacterial properties that help fight harmful microbes','Rich in flavonoids including kaempferol linked to heart and brain health','Good source of calcium and manganese for strong bones and metabolism']},
+  {id:22, category:'Dried Herbs', name:'Dried Mint', weight:'50g', image:'images/Dried-Herbs/Dried_Mint.png', price:4.00,
+    description:'Cool, aromatic dried mint — great for teas, chutneys and garnishing.',
+    benefits:['Relieves IBS symptoms, bloating and digestive discomfort naturally','Natural antibacterial agent that freshens breath and supports oral health','Soothes tension headaches when consumed as tea or applied topically','Rich in rosmarinic acid, a powerful antioxidant and anti-inflammatory compound']},
+  {id:23, category:'Dried Herbs', name:'Dried Parsley', weight:'50g', image:'images/Dried-Herbs/Dried_Parsley.png', price:3.80,
+    description:'Bright, earthy dried parsley — a versatile herb for seasoning and garnishing.',
+    benefits:['Exceptionally rich in Vitamin K essential for blood clotting and bone density','High in Vitamin C to boost immunity, collagen production and skin health','Contains apigenin, an antioxidant flavonoid with researched anti-cancer properties','Natural diuretic that supports kidney health and reduces water retention']},
   // Powders (10)
-  {id:24,category:'Powders', name:'Onion Powder',           weight:'100g', image:'images/Powders/Onion_Powder.png',               price:4.50, description:'Pure dehydrated onion powder — a kitchen essential with deep, sweet onion flavour.'},
-  {id:25,category:'Powders', name:'Garlic Powder',          weight:'100g', image:'images/Powders/Garlic_Powder.png',              price:5.00, description:'100% natural garlic powder — bold, aromatic and free from additives.'},
-  {id:26,category:'Powders', name:'Ginger Powder',          weight:'100g', image:'images/Powders/Ginger_powder.png',             price:4.80, description:'Pure dried ginger powder — warming, anti-inflammatory and great for wellness.'},
-  {id:27,category:'Powders', name:'Pepper Powder',          weight:'100g', image:'images/Powders/pepper_powder.png',             price:5.20, description:'Naturally dried pepper powder — adds a clean, sharp heat to any dish.'},
-  {id:28,category:'Powders', name:'Carrot Powder',          weight:'100g', image:'images/Powders/Carrot_powder.png',             price:4.00, description:'100% dehydrated carrot powder — natural beta-carotene boost for smoothies.'},
-  {id:29,category:'Powders', name:'Tomato Powder',          weight:'100g', image:'images/Powders/tomato_powder.png',             price:5.70, description:'Rich, deeply-flavoured tomato powder for soups, sauces and seasoning.'},
-  {id:30,category:'Powders', name:'Beetroot Powder',        weight:'100g', image:'images/Powders/BeetRoot_powder.png',           price:5.60, description:'Pure cold-dried beetroot powder — earthy, vibrant and rich in iron.'},
-  {id:31,category:'Powders', name:'Pumpkin Powder',         weight:'100g', image:'images/Powders/pumpkin_powder.png',            price:6.00, description:'Naturally sweet pumpkin powder — rich in beta-carotene, great for baking.'},
-  {id:32,category:'Powders', name:'Amla (Gooseberry) Powder',weight:'100g',image:'images/Powders/amla(gooseberry)_powder.png',  price:7.50, description:"Premium amla powder — one of nature's richest sources of Vitamin C."},
-  {id:33,category:'Powders', name:'Neem Powder',            weight:'100g', image:'images/Powders/Neem_powder.png',               price:6.50, description:'Pure dried neem leaf powder — a traditional wellness herb with purifying properties.'},
+  {id:24, category:'Powders', name:'Onion Powder', weight:'100g', image:'images/Powders/Onion_Powder.png', price:4.50,
+    description:'Pure dehydrated onion powder — a kitchen essential with deep, sweet onion flavour.',
+    benefits:['Contains quercetin, a potent anti-inflammatory flavonoid that reduces chronic disease risk','Acts as a natural prebiotic, feeding beneficial gut bacteria and supporting microbiome health','Supports cardiovascular health by reducing cholesterol and blood pressure','Natural antimicrobial properties help boost immunity against infections']},
+  {id:25, category:'Powders', name:'Garlic Powder', weight:'100g', image:'images/Powders/Garlic_Powder.png', price:5.00,
+    description:'100% natural garlic powder — bold, aromatic and free from additives.',
+    benefits:['Concentrated allicin provides powerful immune-boosting and antimicrobial action','Clinically demonstrated to reduce both systolic and diastolic blood pressure','Anti-inflammatory compounds help reduce the risk of heart disease and stroke','Antifungal and antibacterial properties protect against a wide range of pathogens']},
+  {id:26, category:'Powders', name:'Ginger Powder', weight:'100g', image:'images/Powders/Ginger_powder.png', price:4.80,
+    description:'Pure dried ginger powder — warming, anti-inflammatory and great for wellness.',
+    benefits:['Potent gingerols and shogaols provide powerful anti-inflammatory action','Effectively relieves nausea, morning sickness and digestive discomfort','Warming thermogenic effect improves blood circulation and metabolism','Antioxidant-rich — protects cells from oxidative damage and chronic disease']},
+  {id:27, category:'Powders', name:'Pepper Powder', weight:'100g', image:'images/Powders/pepper_powder.png', price:5.20,
+    description:'Naturally dried pepper powder — adds a clean, sharp heat to any dish.',
+    benefits:['Piperine increases bioavailability of curcumin and other nutrients by up to 2000%','Stimulates digestive enzyme production for better nutrient absorption and gut health','Thermogenic properties boost metabolism and support healthy weight management','Rich in antioxidants with potent anti-inflammatory and antibacterial properties']},
+  {id:28, category:'Powders', name:'Carrot Powder', weight:'100g', image:'images/Powders/Carrot_powder.png', price:4.00,
+    description:'100% dehydrated carrot powder — natural beta-carotene boost for smoothies.',
+    benefits:['Concentrated beta-carotene — exceptional protection for eye health and vision','Body converts beta-carotene to Vitamin A supporting immune function and skin health','Promotes naturally glowing skin by neutralising free radicals from within','High in antioxidants that reduce oxidative stress and the risk of chronic disease']},
+  {id:29, category:'Powders', name:'Tomato Powder', weight:'100g', image:'images/Powders/tomato_powder.png', price:5.70,
+    description:'Rich, deeply-flavoured tomato powder for soups, sauces and seasoning.',
+    benefits:['Highest dietary source of lycopene — a carotenoid antioxidant linked to cancer prevention','Lycopene supports prostate health and significantly reduces risk of heart disease','Rich in Vitamin C and potassium for immunity, skin and blood pressure support','Natural glutamic acid provides umami depth to sauces, soups and marinades']},
+  {id:30, category:'Powders', name:'Beetroot Powder', weight:'100g', image:'images/Powders/BeetRoot_powder.png', price:5.60,
+    description:'Pure cold-dried beetroot powder — earthy, vibrant and rich in iron.',
+    benefits:['Natural dietary nitrates improve blood flow, reducing blood pressure and boosting endurance','Rich in iron to support red blood cell production and combat fatigue and anaemia','Betalain pigments are powerful antioxidants with anti-inflammatory properties','Supports liver detoxification and promotes healthy digestive and metabolic function']},
+  {id:31, category:'Powders', name:'Pumpkin Powder', weight:'100g', image:'images/Powders/pumpkin_powder.png', price:6.00,
+    description:'Naturally sweet pumpkin powder — rich in beta-carotene, great for baking.',
+    benefits:['Extremely high in beta-carotene — outstanding protection for eye and skin health','Rich in potassium for healthy heart function and blood pressure regulation','High in dietary fibre for gut health, digestive regularity and weight management','Contains zinc for immune support, wound healing and hormonal balance']},
+  {id:32, category:'Powders', name:'Amla (Gooseberry) Powder', weight:'100g', image:'images/Powders/amla(gooseberry)_powder.png', price:7.50,
+    description:"Premium amla powder — one of nature's richest sources of Vitamin C.",
+    benefits:["One of nature's most concentrated sources of Vitamin C — up to 20x that of oranges","Powerful Ayurvedic adaptogen that reduces stress and strengthens the immune system","Traditionally used for centuries to promote thick, strong and lustrous hair growth","Dense in antioxidants — tannins, flavonoids and polyphenols that slow ageing and protect cells"]},
+  {id:33, category:'Powders', name:'Neem Powder', weight:'100g', image:'images/Powders/Neem_powder.png', price:6.50,
+    description:'Pure dried neem leaf powder — a traditional wellness herb with purifying properties.',
+    benefits:['Traditional Ayurvedic blood purifier used for centuries for systemic wellness','Powerful antibacterial and antifungal properties protect against skin infections and pathogens','Supports healthy, clear skin from within by reducing inflammation and bacterial activity','Traditionally used to help maintain healthy blood glucose levels and liver function']},
 ];
 
 let cart=[], currentCat='all', currentMaxPrice=15, sortMode='default', searchQuery='', showInStock=true, showOutOfStock=true;
@@ -588,12 +712,12 @@ function renderProducts(list){
   document.getElementById('productCountBadge').textContent=list.length+' Product'+(list.length!==1?'s':'');
   if(!list.length){grid.innerHTML='<div class="no-products"><div class="np-icon">🔍</div><h3>No products found</h3><p>Try adjusting your filters.</p></div>';return;}
   grid.innerHTML=list.map(p=>`
-    <div class="product-card">
+    <div class="product-card" onclick="openProductModal(${p.id})">
       <div class="product-img" style="position:relative">
         <img src="${p.image}" alt="${p.name}" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0" onerror="this.style.display='none'">
         ${p.originalPrice?'<span class="badge-sale">SALE</span>':''}
         ${p.outOfStock?'<span class="badge-out">OUT OF STOCK</span>':''}
-        ${!p.outOfStock?'<button class="hover-add" onclick="orderNow('+p.id+')">Order Now</button>':''}
+        ${!p.outOfStock?'<button class="hover-add" onclick="event.stopPropagation();orderNow('+p.id+')">Order Now</button>':''}
       </div>
       <div class="product-info">
         <div class="product-category">${p.category}</div>
@@ -642,6 +766,32 @@ function orderNow(id) {
   const msg = 'Hi Rootiva Foods! I\'d like to order:\n\n\u2022 ' + p.name + ' (' + p.weight + ')\n\nPlease confirm availability and pricing. Thank you!';
   window.open('https://wa.me/61452295664?text=' + encodeURIComponent(msg), '_blank');
 }
+
+function openProductModal(id) {
+  const p = PRODUCTS.find(x => x.id === id);
+  if (!p) return;
+  document.getElementById('pdImg').src = p.image;
+  document.getElementById('pdImg').alt = p.name;
+  document.getElementById('pdCat').textContent = p.category;
+  document.getElementById('pdName').textContent = p.name;
+  document.getElementById('pdWeight').textContent = p.weight;
+  document.getElementById('pdDesc').textContent = p.description;
+  document.getElementById('pdBenefits').innerHTML = (p.benefits || []).map(b =>
+    '<li><span class="pd-check">\u2713</span>' + escHtml(b) + '</li>'
+  ).join('');
+  document.getElementById('pdOrderBtn').onclick = function() { orderNow(id); };
+  document.getElementById('pdOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeProductModal() {
+  document.getElementById('pdOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') { closeProductModal(); closeMobileNav(); }
+});
 </script>
 
 <!-- MOBILE NAV -->
