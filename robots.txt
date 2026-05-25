@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://parash5664.github.io/RootivaFoods/sitemap.xml
+
+# Block unnecessary files from indexing
+Disallow: /.DS_Store
