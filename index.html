@@ -10,6 +10,10 @@
 <meta name="keywords" content="dried fruits Australia, buy dried fruits online Australia, dehydrated fruits Australia, dried vegetables Australia, dried herbs Australia, superfood powders Australia, natural dried food Australia, healthy snacks Australia, dehydrated food online, dried fruit delivery Australia, Rootiva Foods, dry fruits Australia, amla powder Australia, beetroot powder Australia, garlic powder Australia">
 <meta name="author" content="Rootiva Foods">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://images.unsplash.com blob:; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self';">
+<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+<meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
 <meta name="theme-color" content="#1a4d2e">
 <link rel="canonical" href="https://parash5664.github.io/RootivaFoods/index.html">
 
@@ -751,12 +755,13 @@ function renderProducts(filter='all') {
   `).join('');
 }
 
+function escHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#x27;');}
 function handleSearch(val) {
   const v = val.toLowerCase();
   if(!v){renderProducts('all');return;}
   const list = PRODUCTS.filter(p=>p.name.toLowerCase().includes(v)||(p.category||'').toLowerCase().includes(v));
   const grid = document.getElementById('productGrid');
-  if(!list.length){grid.innerHTML='<div class="no-products"><div class="np-icon">🔍</div><h3>No results for "'+val+'"</h3></div>';return;}
+  if(!list.length){grid.innerHTML='<div class="no-products"><div class="np-icon">🔍</div><h3>No results for &ldquo;'+escHtml(val)+'&rdquo;</h3></div>';return;}
   grid.innerHTML = list.slice(0,8).map(p => `
     <div class="product-card">
       <div class="product-img" style="position:relative">

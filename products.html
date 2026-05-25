@@ -10,6 +10,10 @@
 <meta name="keywords" content="dried fruits Australia, dried vegetables Australia, buy dried fruit online Australia, dehydrated snacks Australia, dried herbs Australia, superfood powders Australia, amla powder buy Australia, beetroot powder Australia, neem powder Australia, garlic powder online Australia, dried blueberries Australia, dried strawberries Australia, dried mango Australia, natural food online Australia, healthy snacks online Australia, Rootiva Foods products">
 <meta name="author" content="Rootiva Foods">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://images.unsplash.com blob:; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self';">
+<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+<meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
 <meta name="theme-color" content="#1a4d2e">
 <link rel="canonical" href="https://parash5664.github.io/RootivaFoods/products.html">
 
@@ -520,9 +524,15 @@ const PRODUCTS = [
 let cart=[], currentCat='all', currentMaxPrice=15, sortMode='default', searchQuery='', showInStock=true, showOutOfStock=true;
 
 // URL params
+function escHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#x27;');}
+const KNOWN_CATS = ['Dried Fruits','Dried Vegetables','Dried Herbs','Powders'];
 const urlParams = new URLSearchParams(window.location.search);
 const urlCat = urlParams.get('cat');
-if(urlCat) currentCat=urlCat;
+// Only accept URL cat if it exactly matches a known category (prevents XSS via URL)
+if(urlCat && KNOWN_CATS.includes(urlCat)) currentCat = urlCat;
+// Handle ?search= from Google Sitelinks SearchAction
+const urlSearch = urlParams.get('search');
+if(urlSearch){const si=document.getElementById('searchInput');if(si){si.value=escHtml(urlSearch);}}
 
 function buildSidebar(){
   const cats=['all',...new Set(PRODUCTS.map(p=>p.category))];
@@ -565,7 +575,7 @@ function applyFilters(){
 
 function updateActiveFilters(){
   const tags=[];
-  if(currentCat!=='all') tags.push('<span class="active-filter-tag">'+currentCat+'<button onclick="setCat(\'all\')">✕</button></span>');
+  if(currentCat!=='all') tags.push('<span class="active-filter-tag">'+escHtml(currentCat)+'<button onclick="setCat(\'all\')">✕</button></span>');
   document.getElementById('activeFilters').innerHTML=tags.join('');
 }
 
