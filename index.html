@@ -29,7 +29,7 @@
 <meta property="og:url" content="https://www.rootivafoods.com.au/index.html">
 <meta property="og:title" content="Rootiva Foods – Premium Dried Fruits & Dehydrated Snacks in Australia">
 <meta property="og:description" content="100% natural dried fruits, vegetables, herbs & powders. No preservatives, no additives. Australia-wide delivery. Order now on WhatsApp!">
-<meta property="og:image" content="https://www.rootivafoods.com.au/images/Dried-Fruits/Dried_Apple.png">
+<meta property="og:image" content="https://www.rootivafoods.com.au/images/Dried-Fruits/Dried_Apple.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:site_name" content="Rootiva Foods">
@@ -39,7 +39,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Rootiva Foods – Premium Dried Fruits & Dehydrated Snacks in Australia">
 <meta name="twitter:description" content="100% natural dried fruits, vegetables, herbs & powders delivered across Australia. No preservatives. Order via WhatsApp!">
-<meta name="twitter:image" content="https://www.rootivafoods.com.au/images/Dried-Fruits/Dried_Apple.png">
+<meta name="twitter:image" content="https://www.rootivafoods.com.au/images/Dried-Fruits/Dried_Apple.jpg">
 
 <!-- ═══ STRUCTURED DATA – JSON-LD ═══════════════════════════════════════ -->
 <script type="application/ld+json">
@@ -130,7 +130,8 @@
 </script>
 
 <!-- ═══ PERFORMANCE ══════════════════════════════════════════════════════ -->
-<link rel="preload" as="image" href="images/logo1.jpeg">
+<link rel="preload" as="image" href="images/logo1.jpeg" fetchpriority="high">
+<link rel="preload" as="image" href="images/home_image.jpg" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -183,8 +184,9 @@ header{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);box-shadow:0 
 .nav-social-btn.ig{background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fd5949 45%,#d6249f 60%,#285AEB 90%)}
 .nav-social-btn.ig:hover{filter:brightness(1.1);transform:scale(1.12);box-shadow:0 4px 14px rgba(214,36,159,.4)}
 
-.hero{position:relative;overflow:hidden;background:linear-gradient(135deg, rgba(26,77,46,0.65) 0%, rgba(26,77,46,0.65) 100%), url('images/home_image.png') center/cover no-repeat;color:#fff;padding:90px 36px 80px}
-.hero-bg-pattern{position:absolute;inset:0;background-image:radial-gradient(circle at 20% 50%, rgba(255,255,255,.04) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(200,160,60,.12) 0%, transparent 50%);pointer-events:none}
+.hero{position:relative;overflow:hidden;background:#1a4d2e;color:#fff;padding:90px 36px 80px}
+.hero-bg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:.9}
+.hero-bg-pattern{position:absolute;inset:0;background:rgba(0,0,0,0.18);pointer-events:none}
 .hero-leaves{position:absolute;inset:0;overflow:hidden;pointer-events:none}
 .hero-leaves::before,.hero-leaves::after{content:'🌿';position:absolute;font-size:140px;opacity:.06}
 .hero-leaves::before{top:-20px;right:8%;transform:rotate(-30deg)}
@@ -228,13 +230,25 @@ header{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);box-shadow:0 
 .cat-card h3{font-family:var(--font-display);font-size:19px;color:#fff;font-weight:700;position:relative;z-index:1;margin:0}
 .cat-card .cat-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold-light);margin-bottom:5px;position:relative;z-index:1;font-weight:600}
 .cat-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.nuts-launch{background:var(--green-pale)}
+.nuts-launch .section{padding-top:58px;padding-bottom:58px}
+.nuts-launch .section-head{margin-bottom:30px}
+.nuts-product-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px}
+.nuts-product{background:#fff;border:1px solid rgba(26,77,46,.12);border-radius:var(--radius);padding:22px 18px;text-align:center;text-decoration:none;box-shadow:var(--shadow-sm);transition:.25s}
+.nuts-product:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--green-light)}
+.nuts-product .nuts-emoji{font-size:38px;display:block;margin-bottom:10px}
+.nuts-product img{display:block;width:100%;aspect-ratio:1.15;object-fit:contain;background:#fbf7eb;border-radius:10px;margin-bottom:12px}
+.nuts-product strong{display:block;color:var(--green);font-family:var(--font-display);font-size:18px;line-height:1.2;min-height:44px}
+.nuts-product small{display:block;color:var(--gray);font-size:11px;margin:7px 0 9px}
+.nuts-product b{color:var(--gold);font-size:16px}
+.coming-soon-note{display:inline-block;margin-top:14px;padding:5px 12px;border-radius:50px;background:var(--gold-pale);border:1px solid rgba(192,124,40,.25);color:var(--gold);font-size:10px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase}
 
 /* PRODUCT GRID */
 .products-bg{background:var(--light)}
 .product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(256px,1fr));gap:24px}
 .product-card{background:#fff;border-radius:var(--radius);border:1px solid var(--border);overflow:hidden;box-shadow:var(--shadow-sm);transition:.3s;cursor:pointer;display:flex;flex-direction:column}
 .product-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-color:var(--green-light)}
-.product-img{height:210px;background:var(--green-pale);display:flex;align-items:center;justify-content:center;font-size:68px;position:relative;overflow:hidden}
+.product-img{height:210px;background:#fff;display:flex;align-items:center;justify-content:center;font-size:68px;position:relative;overflow:hidden}
 .product-img img{width:100%;height:100%;object-fit:cover;transition:.4s}
 .product-card:hover .product-img img{transform:scale(1.05)}
 .badge-sale{position:absolute;top:12px;left:12px;background:var(--red);color:#fff;font-size:10px;font-weight:700;padding:4px 10px;border-radius:50px;letter-spacing:.8px}
@@ -259,7 +273,7 @@ header{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);box-shadow:0 
 /* CART */
 .cart-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:200;backdrop-filter:blur(2px)}
 .cart-overlay.open{display:block}
-.cart-panel{position:fixed;right:-440px;top:0;height:100vh;width:400px;background:#fff;z-index:201;box-shadow:-8px 0 48px rgba(0,0,0,.15);transition:.38s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column}
+.cart-panel{position:fixed;right:-440px;top:0;height:100vh;width:min(400px,100vw);background:#fff;z-index:201;box-shadow:-8px 0 48px rgba(0,0,0,.15);transition:.38s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column}
 .cart-panel.open{right:0}
 .cart-hd{padding:22px 26px;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:space-between}
 .cart-hd h3{font-family:var(--font-display);font-size:20px;font-weight:700}
@@ -417,12 +431,14 @@ footer{background:#0f2318;color:rgba(255,255,255,.65);padding:56px 36px 24px}
 .mobile-nav{position:fixed;inset:0;z-index:999;display:none}
 .mobile-nav.open{display:block}
 .mobile-nav-overlay{position:absolute;inset:0;background:rgba(0,0,0,.5);backdrop-filter:blur(3px)}
-.mobile-nav-drawer{position:absolute;left:0;top:0;bottom:0;width:280px;background:#fff;padding:30px 24px;display:flex;flex-direction:column;gap:6px;box-shadow:4px 0 32px rgba(0,0,0,.15)}
+.mobile-nav-drawer{position:absolute;left:0;top:0;bottom:0;width:280px;background:#fff;padding:30px 24px;display:flex;flex-direction:column;gap:6px;box-shadow:4px 0 32px rgba(0,0,0,.15);overflow-y:auto}
 .mobile-nav-drawer .mn-close{align-self:flex-end;background:var(--light);border:none;font-size:20px;cursor:pointer;width:36px;height:36px;border-radius:50%;margin-bottom:12px;color:var(--gray)}
 .mobile-nav-drawer a{display:block;padding:13px 16px;border-radius:10px;color:#333;text-decoration:none;font-size:15px;font-weight:500;transition:.2s}
 .mobile-nav-drawer a:hover{background:var(--green-pale);color:var(--green)}
 .mobile-nav-drawer .mn-wa{margin-top:16px;background:var(--wa);color:#fff;text-align:center;border-radius:50px;font-weight:600;padding:13px}
 .mobile-nav-drawer .mn-wa:hover{background:#1da851;color:#fff}
+.mobile-search{padding:4px 0 10px}
+.mobile-search input{width:100%;padding:11px 13px;border:1.5px solid var(--border);border-radius:10px;font:14px var(--font-body);background:var(--cream)}
 @media(max-width:900px){
   .footer-inner{grid-template-columns:1fr 1fr;gap:28px}
   .hero-stats{gap:20px}
@@ -456,11 +472,23 @@ footer{background:#0f2318;color:rgba(255,255,255,.65);padding:56px 36px 24px}
   .trust-item{font-size:12px}
   .section-head h2{font-size:clamp(22px,5vw,30px)}
 }
+/* BLOG TEASER RESPONSIVE */
+.blog-teaser-card{display:grid;grid-template-columns:1fr 1.1fr;gap:24px;align-items:center;overflow:hidden;border-radius:24px;background:#fff;border:1px solid var(--border);box-shadow:var(--shadow-sm);padding:24px}
+.blog-teaser-card img{width:100%;max-width:320px;border-radius:20px;object-fit:cover;display:block}
+@media(max-width:640px){
+  .blog-teaser-card{grid-template-columns:1fr!important;padding:18px}
+  .blog-teaser-card img{max-width:100%!important;border-radius:14px}
+  .blog-teaser-card h3{font-size:22px!important}
+}
 @media(max-width:420px){
   .cat-grid{grid-template-columns:repeat(2,1fr)}
   .product-grid{grid-template-columns:1fr}
   .hero-stats{gap:12px}
   .hero-stat .num{font-size:20px}
+  .header-inner{gap:6px}
+  .logo-wrap img{height:48px;width:auto}
+  .header-actions{gap:0}
+  .header-actions .nav-social-btn:not(.wa){display:none}
 }
 </style>
 <link rel="sitemap" type="application/xml" href="https://www.rootivafoods.com.au/sitemap.xml">
@@ -490,7 +518,7 @@ footer{background:#0f2318;color:rgba(255,255,255,.65);padding:56px 36px 24px}
       <span></span><span></span><span></span>
     </button>
     <div class="logo-wrap">
-      <img src="images/logo1.jpeg" alt="Rootiva Foods" width="180" height="60" fetchpriority="high">
+      <img src="images/logo1.jpeg" alt="Rootiva Foods" width="180" height="60" fetchpriority="high" decoding="async">
     </div>
     <ul class="nav-links">
       <li><a href="#" class="active">Home</a></li>
@@ -502,7 +530,7 @@ footer{background:#0f2318;color:rgba(255,255,255,.65);padding:56px 36px 24px}
     </ul>
     <div class="header-actions">
       <div class="search-wrap">
-        <input type="text" placeholder="Search products…" oninput="handleSearch(this.value)">
+        <input type="text" placeholder="Search products…" oninput="handleSearch(this.value)" onkeydown="if(event.key==='Enter'&&this.value.trim())location.href='products.html?search='+encodeURIComponent(this.value.trim())">
         <span class="s-icon">🔍</span>
       </div>
       <a href="https://www.facebook.com/profile.php?id=61590536152974" target="_blank" rel="noopener" class="nav-social-btn fb" title="Follow us on Facebook" aria-label="Facebook">
@@ -520,6 +548,7 @@ footer{background:#0f2318;color:rgba(255,255,255,.65);padding:56px 36px 24px}
 
 <!-- HERO -->
 <section class="hero">
+  <img class="hero-bg-img" src="images/home_image.jpg" alt="" aria-hidden="true" fetchpriority="high" decoding="async">
   <div class="hero-bg-pattern"></div>
   <div class="hero-leaves"></div>
   <div class="hero-content">
@@ -527,7 +556,7 @@ footer{background:#0f2318;color:rgba(255,255,255,.65);padding:56px 36px 24px}
     <h1>Real Fruit.<br><span>Real Nutrition.</span><br>Real Taste.</h1>
     <p>We dry it slow, pack it pure, and deliver the real thing straight to your door.</p>
     <div class="hero-btns">
-      <a href="products.html" class="btn-primary">Shop All Products →</a>
+      <a href="products.html?cat=Nuts+%26+Seeds" class="btn-primary">Shop Nuts &amp; Seeds →</a>
       <a href="#categories" class="btn-outline">Browse Categories</a>
       <a href="https://wa.me/61452295664?text=Hi%20Rootiva%20Foods!" target="_blank" class="btn-wa">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
@@ -537,7 +566,7 @@ footer{background:#0f2318;color:rgba(255,255,255,.65);padding:56px 36px 24px}
     <div class="hero-stats">
       <div class="hero-stat"><div class="num">100%</div><div class="lbl">Natural</div></div>
       <div class="hero-stat"><div class="num">0</div><div class="lbl">Preservatives</div></div>
-      <div class="hero-stat"><div class="num">15+</div><div class="lbl">Products</div></div>
+      <div class="hero-stat"><div class="num">9</div><div class="lbl">Available Products</div></div>
       <div class="hero-stat"><div class="num">⭐ 5.0</div><div class="lbl">Rated</div></div>
     </div>
   </div>
@@ -554,33 +583,52 @@ footer{background:#0f2318;color:rgba(255,255,255,.65);padding:56px 36px 24px}
   </div>
 </div>
 
+<!-- AVAILABLE NOW: NUTS & SEEDS -->
+<section class="nuts-launch" id="nuts-seeds">
+  <div class="section">
+    <div class="section-head">
+      <div class="section-eyebrow">Available now · 200g packs · Prices in AUD</div>
+      <h2>Nuts &amp; Seeds</h2>
+      <p>Shop our current range of nuts and seeds, packed in convenient 200g bags.</p>
+    </div>
+    <div class="nuts-product-grid">
+      <a class="nuts-product" href="products.html?product=34"><img src="images/nuts%20%26%20seeds/Raw%20Almonds.jpg" alt="Raw almonds" loading="lazy"><strong>Raw Almonds</strong><small>200g pack</small><b>A$6.99</b></a>
+      <a class="nuts-product" href="products.html?product=35"><img src="images/nuts%20%26%20seeds/Roasted%20Almonds.jpeg" alt="Roasted almonds" loading="lazy"><strong>Roasted Almonds</strong><small>200g pack</small><b>A$6.99</b></a>
+      <a class="nuts-product" href="products.html?product=36"><img src="images/nuts%20%26%20seeds/Raw%20Casews.jpeg" alt="Raw cashews" loading="lazy"><strong>Raw Cashews</strong><small>200g pack</small><b>A$6.99</b></a>
+      <a class="nuts-product" href="products.html?product=37"><img src="images/nuts%20%26%20seeds/UNSALTED%20ROASTED%20CASHEWS.jpeg" alt="Unsalted roasted cashews" loading="lazy"><strong>Unsalted Cashews</strong><small>200g pack</small><b>A$6.99</b></a>
+      <a class="nuts-product" href="products.html?product=38"><img src="images/nuts%20%26%20seeds/WALNUTS.jpeg" alt="Walnuts" loading="lazy"><strong>Walnuts</strong><small>200g pack</small><b>A$5.99</b></a>
+      <a class="nuts-product" href="products.html?product=39"><img src="images/nuts%20%26%20seeds/PUMPKIN%20SEEDS.jpeg" alt="Pumpkin seeds pepitas" loading="lazy"><strong>Pumpkin Seeds (Pepitas)</strong><small>200g pack</small><b>A$5.99</b></a>
+      <a class="nuts-product" href="products.html?product=40"><img src="images/nuts%20%26%20seeds/Roasted%20Salted%20Peanuts.jpg" alt="Roasted salted peanuts" loading="lazy"><strong>Roasted Salted Peanuts</strong><small>200g pack</small><b>A$5.99</b></a>
+      <a class="nuts-product" href="products.html?product=41"><img src="images/nuts%20%26%20seeds/Mixed%20Nuts.jpg" alt="Mixed nuts" loading="lazy"><strong>Mixed Nuts</strong><small>200g pack</small><b>A$6.99</b></a>
+      <a class="nuts-product" href="products.html?product=42"><img src="images/nuts%20%26%20seeds/PISTACHIO%20KERNEL.jpeg" alt="Pistachio kernels" loading="lazy"><strong>Pistachio Kernels</strong><small>200g pack</small><b>A$16.99</b></a>
+    </div>
+    <div style="text-align:center;margin-top:26px"><a href="products.html?cat=Nuts+%26+Seeds" class="btn-primary">Shop Nuts &amp; Seeds →</a></div>
+  </div>
+</section>
+
 <!-- CATEGORIES -->
 <section class="section" id="categories">
   <div class="section-head">
-    <div class="section-eyebrow">What we offer</div>
-    <h2>Shop by Category</h2>
-    <p>From dried tropical fruits to superfood powders and crispy veggie chips — pure, dehydrated goodness.</p>
+    <div class="section-eyebrow">More ranges are on the way</div>
+    <h2>Coming Soon</h2>
+    <p>Nuts &amp; Seeds are available now. Our other product ranges are coming soon.</p>
   </div>
   <div class="cat-grid">
     <a class="cat-card" href="products.html?cat=Dried+Fruits">
-      <img class="cat-bg" src="images/Dried-Fruits/Dried_Apple.png" alt="Dried Fruits">
-      <div class="cat-overlay"><span class="cat-label">9 Products</span><h3>Dried Fruits</h3></div>
+      <img class="cat-bg" src="images/Dried-Fruits/Dried_Apple.jpg" alt="Dried Fruits" loading="lazy" decoding="async" width="600" height="600">
+      <div class="cat-overlay"><span class="cat-label">Coming Soon</span><h3>Dried Fruits</h3></div>
     </a>
     <a class="cat-card" href="products.html?cat=Dried+Vegetables">
-      <img class="cat-bg" src="images/Dried-Vegitables/Dried_Carrot.png" alt="Dried Vegetables">
-      <div class="cat-overlay"><span class="cat-label">11 Products</span><h3>Dried Vegetables</h3></div>
+      <img class="cat-bg" src="images/Dried-Vegitables/Dried_Carrot.jpg" alt="Dried Vegetables" loading="lazy" decoding="async" width="600" height="600">
+      <div class="cat-overlay"><span class="cat-label">Coming Soon</span><h3>Dried Vegetables</h3></div>
     </a>
     <a class="cat-card" href="products.html?cat=Dried+Herbs">
-      <img class="cat-bg" src="images/Dried-Herbs/Dried_Mint.png" alt="Dried Herbs">
-      <div class="cat-overlay"><span class="cat-label">3 Products</span><h3>Dried Herbs</h3></div>
+      <img class="cat-bg" src="images/Dried-Herbs/Dried_Mint.jpg" alt="Dried Herbs" loading="lazy" decoding="async" width="600" height="600">
+      <div class="cat-overlay"><span class="cat-label">Coming Soon</span><h3>Dried Herbs</h3></div>
     </a>
     <a class="cat-card" href="products.html?cat=Powders">
-      <img class="cat-bg" src="images/Powders/BeetRoot_powder.png" alt="Powders">
-      <div class="cat-overlay"><span class="cat-label">10 Products</span><h3>Powders</h3></div>
-    </a>
-    <a class="cat-card" href="products.html">
-      <img class="cat-bg" src="images/Dried-Fruits/Dried_pineapple.png" alt="All Products">
-      <div class="cat-overlay"><span class="cat-label">33 Products</span><h3>All Products</h3></div>
+      <img class="cat-bg" src="images/Powders/BeetRoot_powder.jpg" alt="Powders" loading="lazy" decoding="async" width="600" height="600">
+      <div class="cat-overlay"><span class="cat-label">Coming Soon</span><h3>Powders</h3></div>
     </a>
   </div>
 </section>
@@ -589,9 +637,9 @@ footer{background:#0f2318;color:rgba(255,255,255,.65);padding:56px 36px 24px}
 <div class="products-bg" id="shop">
   <div class="section">
     <div class="section-head">
-      <div class="section-eyebrow">Top Picks</div>
-      <h2>Featured Products</h2>
-      <p>Handpicked bestsellers — concentrated flavour, maximum nutrition.</p>
+      <div class="section-eyebrow">More ranges are on the way</div>
+      <h2>Other Products Coming Soon</h2>
+      <p>Our dried fruits, vegetables, herbs and powders will be available soon.</p>
     </div>
     <div class="filter-bar" id="filterBar"></div>
     <div class="product-grid" id="productGrid"></div>
@@ -624,8 +672,8 @@ footer{background:#0f2318;color:rgba(255,255,255,.65);padding:56px 36px 24px}
     <h2>How dehydrated powders boost your health</h2>
     <p>Read our expert guide on using 100% natural tomato powder, superfood blends and dried herbs to make everyday meals healthier, more flavourful and easy to prepare.</p>
   </div>
-  <div class="blog-teaser-card" style="display:grid;grid-template-columns:1fr 1.1fr;gap:24px;align-items:center;overflow:hidden;border-radius:24px;background:#fff;border:1px solid var(--border);box-shadow:var(--shadow-sm);padding:24px;">
-    <img src="images/Powders/tomato_powder.png" alt="Tomato powder in bowl" style="width:100%;max-width:320px;border-radius:20px;object-fit:cover;display:block;" loading="lazy">
+  <div class="blog-teaser-card">
+    <img src="images/Powders/tomato_powder.jpg" alt="Tomato powder in bowl" loading="lazy" decoding="async" width="320" height="320">
     <div>
       <p style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--green-mid);margin-bottom:12px;font-weight:700;">Healthy lifestyle tips</p>
       <h3 style="font-family:var(--font-display);font-size:28px;line-height:1.18;color:var(--green);margin-bottom:16px;">Tomato powder, natural nutrition and easy meal ideas</h3>
@@ -646,7 +694,7 @@ footer{background:#0f2318;color:rgba(255,255,255,.65);padding:56px 36px 24px}
 <footer id="contact">
   <div class="footer-inner">
     <div class="footer-brand">
-      <img src="images/logo1.jpeg" alt="Rootiva Foods" class="footer-logo">
+      <img src="images/logo1.jpeg" alt="Rootiva Foods" class="footer-logo" loading="lazy" decoding="async" width="180" height="52">
       <p>Premium dehydrated fruit chips, veggie chips, superfood powders, dried berries &amp; herbs. 100% natural, no preservatives. Proudly serving Australia.</p>
       <div class="social-links">
         <a href="https://www.facebook.com/profile.php?id=61590536152974" target="_blank" rel="noopener" title="Follow us on Facebook">📘</a>
@@ -792,40 +840,40 @@ footer{background:#0f2318;color:rgba(255,255,255,.65);padding:56px 36px 24px}
 
 <script>
 const PRODUCTS = [
-  {id:1, category:'Dried Fruits', name:'Dried Apple', weight:'100g', image:'images/Dried-Fruits/Dried_Apple.png', price:6.80,
+  {id:1, category:'Dried Fruits', name:'Dried Apple', weight:'100g', image:'images/Dried-Fruits/Dried_Apple.jpg', price:6.80,
     description:'Crisp dehydrated apple rings with all the fibre and flavour, zero preservatives.',
     benefits:['High in dietary fibre including pectin, which acts as a prebiotic for gut bacteria','Contains quercetin and catechin — flavonoids linked to reduced inflammation','Natural source of Vitamin C for immune support and skin health','Supports healthy weight management by promoting feelings of fullness']},
-  {id:2, category:'Dried Fruits', name:'Dried Pineapple', weight:'100g', image:'images/Dried-Fruits/Dried_pineapple.png', price:9.80,
+  {id:2, category:'Dried Fruits', name:'Dried Pineapple', weight:'100g', image:'images/Dried-Fruits/Dried_pineapple.jpg', price:9.80,
     description:'Golden pineapple rings slow-dried to intensify their natural sweetness.',
     benefits:['Contains bromelain, a powerful enzyme that aids protein digestion and reduces inflammation','Excellent source of Vitamin C and manganese for immunity and metabolism','Anti-inflammatory properties may reduce post-exercise muscle soreness','Supports immune function and accelerates tissue healing and recovery']},
-  {id:3, category:'Dried Fruits', name:'Dried Strawberry', weight:'100g', image:'images/Dried-Fruits/Dried_Straberry.png', price:10.50,
+  {id:3, category:'Dried Fruits', name:'Dried Strawberry', weight:'100g', image:'images/Dried-Fruits/Dried_Straberry.jpg', price:10.50,
     description:'Vibrant freeze-dried strawberry slices packed with natural antioxidants.',
     benefits:['Among the highest Vitamin C content of all fruits — boosts immunity and skin health','Supports heart health by reducing oxidative stress and improving circulation','Rich in folate (Vitamin B9) essential for cellular repair and DNA synthesis','Potent anthocyanins and quercetin protect against chronic disease and ageing']},
-  {id:4, category:'Dried Fruits', name:'Dried Papaya', weight:'100g', image:'images/Dried-Fruits/Dried_Papaya.png', price:5.50,
+  {id:4, category:'Dried Fruits', name:'Dried Papaya', weight:'100g', image:'images/Dried-Fruits/Dried_Papaya.jpg', price:5.50,
     description:'Sun-kissed papaya slices, naturally dehydrated for a sweet tropical chew.',
     benefits:['Contains papain enzyme that breaks down proteins and aids digestion naturally','Rich in Vitamin C to strengthen immunity and promote collagen production','Natural source of beta-carotene supporting eye health and night vision','Anti-inflammatory properties help reduce joint pain and swelling']},
-  {id:5, category:'Dried Fruits', name:'Dried Banana', weight:'100g', image:'images/Dried-Fruits/Dried_Banana%20.png', price:5.50,
+  {id:5, category:'Dried Fruits', name:'Dried Banana', weight:'100g', image:'images/Dried-Fruits/Dried_Banana.jpg', price:5.50,
     description:'Golden banana chips slow-dried for a naturally sweet, energy-packed snack.',
     benefits:['Rich in potassium for healthy heart function and muscle performance','Natural energy from fructose and glucose — ideal pre or post workout snack','Good source of magnesium that promotes relaxation and quality sleep','Vitamin B6 supports mood regulation and brain neurotransmitter production']},
-  {id:6, category:'Dried Vegetables', name:'Dried Carrot', weight:'100g', image:'images/Dried-Vegitables/Dried_Carrot.png', price:3.60,
+  {id:6, category:'Dried Vegetables', name:'Dried Carrot', weight:'100g', image:'images/Dried-Vegitables/Dried_Carrot.jpg', price:3.60,
     description:'Light and crunchy carrot chips — a guilt-free snack full of beta-carotene.',
     benefits:['Exceptionally high in beta-carotene that the body converts to Vitamin A','Supports sharp vision and eye health, especially night vision','Antioxidants protect skin from UV damage and premature ageing','High in fibre supporting healthy digestion and cholesterol management']},
-  {id:7, category:'Dried Vegetables', name:'Dried Kale', weight:'100g', image:'images/Dried-Vegitables/Dried_Kale.png', price:6.50,
+  {id:7, category:'Dried Vegetables', name:'Dried Kale', weight:'100g', image:'images/Dried-Vegitables/Dried_Kale.jpg', price:6.50,
     description:'Light and crispy kale chips loaded with vitamins K, A and C.',
     benefits:['One of the most nutrient-dense foods — rich in Vitamins K, A, C and B6','Excellent calcium source supporting strong bones, teeth and nerve function','Lutein and zeaxanthin protect eye health and reduce macular degeneration risk','Sulforaphane has anti-cancer properties and supports liver detoxification']},
-  {id:8, category:'Powders', name:'Beetroot Powder', weight:'100g', image:'images/Powders/BeetRoot_powder.png', price:5.60,
+  {id:8, category:'Powders', name:'Beetroot Powder', weight:'100g', image:'images/Powders/BeetRoot_powder.jpg', price:5.60,
     description:'Pure cold-dried beetroot powder — earthy, vibrant and rich in iron.',
     benefits:['Natural dietary nitrates improve blood flow, reducing blood pressure and boosting endurance','Rich in iron to support red blood cell production and combat fatigue and anaemia','Betalain pigments are powerful antioxidants with anti-inflammatory properties','Supports liver detoxification and promotes healthy digestive and metabolic function']},
-  {id:9, category:'Powders', name:'Amla Powder', weight:'100g', image:'images/Powders/amla(gooseberry)_powder.png', price:7.50,
+  {id:9, category:'Powders', name:'Amla Powder', weight:'100g', image:'images/Powders/amla(gooseberry)_powder.jpg', price:7.50,
     description:"Premium amla powder — one of nature's richest sources of Vitamin C.",
     benefits:["One of nature's most concentrated sources of Vitamin C — up to 20x that of oranges","Powerful Ayurvedic adaptogen that reduces stress and strengthens the immune system","Traditionally used for centuries to promote thick, strong and lustrous hair growth","Dense in antioxidants — tannins, flavonoids and polyphenols that slow ageing and protect cells"]},
-  {id:10, category:'Dried Herbs', name:'Dried Mint', weight:'50g', image:'images/Dried-Herbs/Dried_Mint.png', price:4.00,
+  {id:10, category:'Dried Herbs', name:'Dried Mint', weight:'50g', image:'images/Dried-Herbs/Dried_Mint.jpg', price:4.00,
     description:'Cool, aromatic dried mint — great for teas, chutneys and garnishing.',
     benefits:['Relieves IBS symptoms, bloating and digestive discomfort naturally','Natural antibacterial agent that freshens breath and supports oral health','Soothes tension headaches when consumed as tea or applied topically','Rich in rosmarinic acid, a powerful antioxidant and anti-inflammatory compound']},
-  {id:11, category:'Dried Fruits', name:'Dried Blueberry', weight:'100g', image:'images/Dried-Fruits/Dried_Blueberry.png', price:12.00,
+  {id:11, category:'Dried Fruits', name:'Dried Blueberry', weight:'100g', image:'images/Dried-Fruits/Dried_Blueberry.jpg', price:12.00,
     description:'Plump dried blueberries packed with antioxidants — sweet and irresistible.',
     benefits:['Exceptionally high in antioxidants that protect brain cells from oxidative damage','Supports heart health and may help reduce LDL cholesterol levels','Rich in Vitamin C and Vitamin K for immune and bone support','May improve memory, concentration and cognitive function']},
-  {id:12, category:'Powders', name:'Garlic Powder', weight:'100g', image:'images/Powders/Garlic_Powder.png', price:5.00,
+  {id:12, category:'Powders', name:'Garlic Powder', weight:'100g', image:'images/Powders/Garlic_Powder.jpg', price:5.00,
     description:'100% natural garlic powder — bold, aromatic and free from additives.',
     benefits:['Concentrated allicin provides powerful immune-boosting and antimicrobial action','Clinically demonstrated to reduce both systolic and diastolic blood pressure','Anti-inflammatory compounds help reduce the risk of heart disease and stroke','Antifungal and antibacterial properties protect against a wide range of pathogens']},
 ];
@@ -851,7 +899,7 @@ function renderProducts(filter='all') {
   document.getElementById('productGrid').innerHTML = list.map(p => `
     <div class="product-card" data-pid="${p.id}">
       <div class="product-img" style="position:relative">
-        <img src="${p.image}" alt="${p.name}" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0" onerror="this.style.display='none'">
+        <img src="${p.image}" alt="${p.name}" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0" onerror="this.style.display='none'">
         ${p.originalPrice ? '<span class="badge-sale">SALE</span>' : ''}
         ${p.outOfStock ? '<span class="badge-out">OUT OF STOCK</span>' : ''}
         ${!p.outOfStock ? '<div class="hover-add">View Details →</div>' : ''}
@@ -883,7 +931,7 @@ function handleSearch(val) {
   grid.innerHTML = list.slice(0,8).map(p => `
     <div class="product-card" data-pid="${p.id}">
       <div class="product-img" style="position:relative">
-        <img src="${p.image}" alt="${p.name}" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0" onerror="this.style.display='none'">
+        <img src="${p.image}" alt="${p.name}" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0" onerror="this.style.display='none'">
         ${p.outOfStock ? '<span class="badge-out">OUT OF STOCK</span>' : ''}
         ${!p.outOfStock ? '<div class="hover-add">View Details →</div>' : ''}
       </div>
@@ -1029,12 +1077,14 @@ document.getElementById('productGrid').addEventListener('click', function(e) {
   <div class="mobile-nav-overlay" onclick="closeMobileNav()"></div>
   <div class="mobile-nav-drawer">
     <button class="mn-close" onclick="closeMobileNav()">✕</button>
+    <form class="mobile-search" action="products.html" method="get"><input type="search" name="search" placeholder="Search products…" aria-label="Search products"></form>
     <a href="index.html">Home</a>
     <a href="products.html">Shop All</a>
     <a href="products.html?cat=Dried+Fruits">Dried Fruits</a>
     <a href="products.html?cat=Dried+Vegetables">Dried Vegetables</a>
     <a href="products.html?cat=Dried+Herbs">Dried Herbs</a>
     <a href="products.html?cat=Powders">Powders</a>
+    <a href="products.html?cat=Nuts+%26+Seeds">Nuts &amp; Seeds · Available Now</a>
     <a href="index.html#about">About Us</a>
     <a href="index.html#contact">Contact</a>
     <a href="blog.html">Blog</a>
